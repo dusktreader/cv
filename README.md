@@ -7,8 +7,8 @@ Vancouver WA / Portland OR
 ## Summary
 
 Passionate Engineering Team Lead dedicated to delivering quality software throughout the
-full-stack and while my team with velocity and empathy. Seeking growth opportunities for
-personal and professional development within vibrant collaborative working environments.
+full-stack while leading my team with velocity and empathy. Seeking growth opportunities
+for personal and professional development within vibrant collaborative working environments.
 
 
 ## Technical Capbility Highlights
@@ -21,32 +21,33 @@ personal and professional development within vibrant collaborative working envir
 
 ### Office Ally: 2019 -- Present: Web Development Team Lead
 
-#### 2020 -- Present: Genomics Project
+#### 2020 -- Present: Genomics Project & Transition to Team Lead
 
-* Piloted effort to integrate results and statuses from genomic testing venture project
-  into patient portal
+* Piloted effort to integrate lab reports and processing statuses from genomic testing
+  venture project into Patient Ally.
 * Collaborated with Architecture team to develop kafka messaging system for moving
-  genomics related data and status changes throughout cross-platform ecosystem
-*
+  genomics related data and status changes throughout cross-platform ecosystem.
+* Revised Sprint Retrospective meeting structure to improve team engagement, encourage
+  reflection on team dynamics, and promote positive feedback among team-members.
+* Handled challenging transition to Team Lead in the midst of dramatic turnover,
+  performance challenges, and team re-direction.
+* Codified and regularized One-on-One meetings with direct reports to track professional
+  development and establish constructive candor in team communication.
+* Rallied an exhausted and discouraged team around a last minute crunch-time project
+  mandated by high-level stakeholders and delivered results while maximizing engagement.
 
 #### 2019 -- 2020: Patient Portal Frontend Rewrite
 
 * Lead effort to rewrite legacy frontend application from Django to Angular 11 using
   modern best practices and reactive user experience
 * Introduced [ngrx](https://ngrx.io/) store for system-wide application state management
-  and reactive asynchronous communication with backend subsystems
-* Re-designed messaging section from scratch to behave like familar email applications
-  including contacts, attachments, and intuitive conversation-based message presentation
+  and reactive asynchronous communication with backend subsystems.
+* Re-designed PA Messaging section from scratch to behave like familar email applications
+  including contacts, attachments, and intuitive conversation-based message presentation.
 * Promoted version control workflow standardization and collaborated with other senior
-  developers to codify standards and best practices for using git
+  developers to codify standards and best practices for git.
 * Mentored junior devs struggling with new technologies and reactive design to improve
-  overall team velocity in conversion project
-
-
-* Developed cookiecutter based project template for FastAPI applications that allow new
-  microservices to be generated in minutes.
-* Introduced locally hosted python package index for internal libraries and promoted
-  team-wide usage of poetry for dependency management and package publication
+  overall team velocity in conversion project.
 
 
 ### Comscore: 2012 -- 2019: Senior Software Engineer
