@@ -1,6 +1,8 @@
 # Tucker Beck
 Vancouver WA / Portland OR
+
 [tucker.beck@gmail.com](tucker.beck@gmail.com)
+
 [509.713.2325](tel:5097132325)
 
 
@@ -25,8 +27,8 @@ for personal and professional development within vibrant collaborative working e
 
 * Piloted effort to integrate lab reports and processing statuses from genomic testing
   venture project into Patient Ally.
-* Collaborated with Architecture team to develop kafka messaging system for moving
-  genomics related data and status changes throughout cross-platform ecosystem.
+* Collaborated with Architecture team to develop a kafka-based event driven architecture
+  for moving genomics related data and status changes throughout cross-platform ecosystem.
 * Revised Sprint Retrospective meeting structure to improve team engagement, encourage
   reflection on team dynamics, and promote positive feedback among team-members.
 * Handled challenging transition to Team Lead in the midst of dramatic turnover,
