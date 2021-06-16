@@ -14,22 +14,21 @@ working environments.
 
 ## Technical Capability Highlights
 
-* Languages
-  Python, TypeScript/JavaScript, Perl, C++
-* Technologies
-  FastAPI, Flask, Angular, Docker, Kafka, SQLAlchemy, Spark, Postgres
+* **Languages**: Python, TypeScript/JavaScript, Perl, C++
+* **Technologies**: FastAPI, Flask, Angular, Docker, Kafka, SQLAlchemy, Spark, Postgres
 
 
 ## Professional Experience
 
-### Office Ally: Web Development Team Lead
+### [Office Ally](https://cms.officeally.com/): Web Development Team Lead
 
 #### 2020 - Present: Genomics Project & Transition to Team Lead
 
 * Piloted effort to integrate lab reports and processing statuses from genomic testing
-  venture project into Patient Ally.
-* Collaborated with Architecture team to develop a kafka-based event driven architecture
-  for moving genomics related data and status changes throughout cross-platform ecosystem.
+  venture project into [Patient Ally](https://www.patientally.com).
+* Collaborated with Architecture team to develop a [Kafka](https://kafka.apache.org/)-based
+  event driven architecture for moving genomics related data and status changes throughout
+  cross-platform ecosystem.
 * Revised Sprint Retrospective meeting structure to improve team engagement, encourage
   reflection on team dynamics, and promote positive feedback among team-members.
 * Handled challenging transition to Team Lead in the midst of dramatic turnover,
@@ -40,7 +39,7 @@ working environments.
   mandated by high-level stakeholders and delivered results while maximizing engagement.
 
 
-#### 2019 - 2020: Patient Portal Frontend Rewrite
+#### 2019 - 2020: [Patient Ally](https://www.patientally.com) Frontend Rewrite
 
 * Lead effort to rewrite legacy frontend application from Django to Angular 11 using
   modern best practices and reactive user experience
@@ -54,25 +53,26 @@ working environments.
   overall team velocity in conversion project.
 
 
-### Comscore: Senior Software Engineer
+### [Comscore](https://www.comscore.com): Senior Software Engineer
 
 #### 2016 - 2019: Cross-platform record linkage / entity resolution for large metadata store
 
 * Spearheaded and lead development of mission critical internal system for record
   linkage and entity resolution (deduplicating and disambiguating metadata) from
   disparate subsystems of Comscore.
-* Developed flexible graph-like data schema in Postgres to support heterogeneous data
-  models in a single large metadata store.
+* Developed flexible graph-like data schema in [Postgres](https://www.postgresql.org) to
+  support heterogeneous data models in a single large metadata store.
 * Architected ETL pipeline to consume and normalize multi-format data from a wide range
   of sources including S3, FTP, and external databases.
 * Designed scalable recommendation engine using Spark for distributed processing to
   deliver aggregated link recommendations utilizing multiple, independent matching
   algorithms.
-* Forged stand-alone API application using Python and Flask to service front-end UI as
-  well as direct access by external services.
+* Forged stand-alone API application using [Python](https://www.python.org) and
+  [Flask](https://flask.palletsprojects.com) to service front-end UI as well as direct
+  access by external services.
 
 
-#### 2012 - 2016: Refactor legacy record linkage systems
+#### 2012 - 2016: Refactor legacy [record linkage](https://en.wikipedia.org/wiki/Record_linkage) systems
 
 * Launched efforts to consolidate several mechanisms of “title matching” (human curated
   record linkage driven by algorithmic heuristics) for the On Demand Essentials product.
@@ -85,7 +85,7 @@ working environments.
   began delivering invalid data, and used new capabilities to triage problems.
 
 
-### Batelle Inc.: Applied Parallel Computing Scientist II
+### [Batelle Inc.](https://www.battelle.org): Applied Parallel Computing Scientist II
 
 #### 2011 - 2012: Modernize open-source biomolecular research application
 
@@ -106,25 +106,29 @@ working environments.
 * Converged with two off-team developers to transition exploratory research code written
   in MatLab to deployment ready platform implemented in C++.
 * Designed distributed computing platform for computational tasks including a
-  dispatching system for client requests from a custom Qt client-side application to a
-  compute cluster using ZeroMQ for low-latency inter-process communication.
+  dispatching system for client requests from a custom [Qt](https://www.qt.io) client-side
+  application to a compute cluster using [ZeroMQ](https://zeromq.org) for low-latency
+  inter-process communication.
 
 
 #### 2008 - 2010:  Detection and classification of objects in gigapixel images
 
 * Researched and developed object detectors that hunted for ~2500 pixel objects in ~10
-  gigapixel images utilizing OpenMP to locally optimize searches.
+  gigapixel images utilizing [OpenMP](https://www.openmp.org) to locally optimize searches.
 * Experimented with signature-based classifiers for disjoint object categories using
-  Boosted Tree Classifiers, Support Vector Machines, and Artificial Neural Networks.
-* Explored signature generation in C++ with OpenCV using morphology, curvature metrics,
-  and structural statistical moments.
-* Developed a novel hybridization of  a Self-Organizing Map with an Artificial Neural
-  Network to classify images by structural signature of sub-features.
+  [Boosted Tree Classifiers](https://en.wikipedia.org/wiki/Gradient_boosting),
+  [Support Vector Machines](https://en.wikipedia.org/wiki/Support_vector_machines), and
+  [Artificial Neural Networks](https://en.wikipedia.org/wiki/Artificial_neural_network).
+* Explored signature generation in C++ with [OpenCV](https://opencv.org) using morphology,
+  curvature metrics, and structural statistical moments.
+* Developed a [novel hybridization](https://github.com/dusktreader/somtk) of a
+  [Self-Organizing Map](https://en.wikipedia.org/wiki/Self-organizing_map) with an Artificial
+  Neural Network to classify images by structural signature of sub-features.
 
 
 ## Education
 
-### 2004 - 2008:  Washington State University: Computer Science B.S.
+### 2004 - 2008: [Washington State University](https://wsu.edu): Computer Science B.S.
 
 * Graduated Cum Laude
 * Focused on Scientific Computing, Machine Learning, and Parallel Computing
