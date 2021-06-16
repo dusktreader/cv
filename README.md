@@ -1,4 +1,8 @@
-# Tucker Beck [📍](https://goo.gl/maps/zgVAgxrRwfM1EPpf9) [📧](tucker.beck@gmail.com) [🛠️](https://github.com/dusktreader)
+# Tucker Beck
+
+[📍 Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9) -
+[📧 tucker.beck@gmail.com](tucker.beck@gmail.com) -
+[🛠️ dusktreader@github](https://github.com/dusktreader)
 
 ## Summary
 
