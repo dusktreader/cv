@@ -1,7 +1,7 @@
 # Tucker Beck
 
-[📍 Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9) -
-[📧 tucker.beck@gmail.com](tucker.beck@gmail.com) -
+[📍 Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9) /
+[📧 tucker.beck@gmail.com](tucker.beck@gmail.com) /
 [🛠️ dusktreader@github](https://github.com/dusktreader)
 
 ## Summary
@@ -14,13 +14,15 @@ working environments.
 
 ## Technical Capability Highlights
 
-* Languages: Python, TypeScript/JavaScript, Perl, C++
-* Technologies: FastAPI, Flask, Angular, Docker, Kafka, SQLAlchemy, Spark, Postgres
+* Languages
+  Python, TypeScript/JavaScript, Perl, C++
+* Technologies
+  FastAPI, Flask, Angular, Docker, Kafka, SQLAlchemy, Spark, Postgres
 
 
 ## Professional Experience
 
-### Office Ally: 2019 - Present: Web Development Team Lead
+### Office Ally: Web Development Team Lead
 
 #### 2020 - Present: Genomics Project & Transition to Team Lead
 
@@ -37,6 +39,7 @@ working environments.
 * Rallied an exhausted and discouraged team around a last minute crunch-time project
   mandated by high-level stakeholders and delivered results while maximizing engagement.
 
+
 #### 2019 - 2020: Patient Portal Frontend Rewrite
 
 * Lead effort to rewrite legacy frontend application from Django to Angular 11 using
@@ -51,7 +54,7 @@ working environments.
   overall team velocity in conversion project.
 
 
-### Comscore: 2012 - 2019: Senior Software Engineer
+### Comscore: Senior Software Engineer
 
 #### 2016 - 2019: Cross-platform record linkage / entity resolution for large metadata store
 
@@ -82,7 +85,7 @@ working environments.
   began delivering invalid data, and used new capabilities to triage problems.
 
 
-### Batelle Inc.: 2008 - 2012: Applied Parallel Computing Scientist II
+### Batelle Inc.: Applied Parallel Computing Scientist II
 
 #### 2011 - 2012: Modernize open-source biomolecular research application
 
