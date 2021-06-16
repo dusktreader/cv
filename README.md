@@ -1,14 +1,11 @@
-# Tucker Beck
-[📍](https://goo.gl/maps/zgVAgxrRwfM1EPpf9)
-[📧](tucker.beck@gmail.com)
-[🛠️](https://github.com/dusktreader)
-
+# Tucker Beck [📍](https://goo.gl/maps/zgVAgxrRwfM1EPpf9) [📧](tucker.beck@gmail.com) [🛠️](https://github.com/dusktreader)
 
 ## Summary
 
 Passionate Engineering Team Lead dedicated to delivering quality software throughout the
-full-stack while leading my team with velocity and empathy. Seeking growth opportunities
-for personal and professional development within vibrant collaborative working environments.
+full software stack while leading my team with velocity and empathy. Seeking growth
+opportunities for personal and professional development within vibrant collaborative
+working environments.
 
 
 ## Technical Capability Highlights
@@ -19,9 +16,9 @@ for personal and professional development within vibrant collaborative working e
 
 ## Professional Experience
 
-### Office Ally: 2019 -- Present: Web Development Team Lead
+### Office Ally: 2019 - Present: Web Development Team Lead
 
-#### 2020 -- Present: Genomics Project & Transition to Team Lead
+#### 2020 - Present: Genomics Project & Transition to Team Lead
 
 * Piloted effort to integrate lab reports and processing statuses from genomic testing
   venture project into Patient Ally.
@@ -36,7 +33,7 @@ for personal and professional development within vibrant collaborative working e
 * Rallied an exhausted and discouraged team around a last minute crunch-time project
   mandated by high-level stakeholders and delivered results while maximizing engagement.
 
-#### 2019 -- 2020: Patient Portal Frontend Rewrite
+#### 2019 - 2020: Patient Portal Frontend Rewrite
 
 * Lead effort to rewrite legacy frontend application from Django to Angular 11 using
   modern best practices and reactive user experience
@@ -50,9 +47,9 @@ for personal and professional development within vibrant collaborative working e
   overall team velocity in conversion project.
 
 
-### Comscore: 2012 -- 2019: Senior Software Engineer
+### Comscore: 2012 - 2019: Senior Software Engineer
 
-#### 2016 -- 2019: Cross-platform record linkage / entity resolution for large metadata store
+#### 2016 - 2019: Cross-platform record linkage / entity resolution for large metadata store
 
 * Spearheaded and lead development of mission critical internal system for record
   linkage and entity resolution (deduplicating and disambiguating metadata) from
@@ -68,7 +65,7 @@ for personal and professional development within vibrant collaborative working e
   well as direct access by external services.
 
 
-#### 2012 -- 2016: Refactor legacy record linkage systems
+#### 2012 - 2016: Refactor legacy record linkage systems
 
 * Launched efforts to consolidate several mechanisms of “title matching” (human curated
   record linkage driven by algorithmic heuristics) for the On Demand Essentials product.
@@ -81,9 +78,9 @@ for personal and professional development within vibrant collaborative working e
   began delivering invalid data, and used new capabilities to triage problems.
 
 
-### Batelle Inc.: 2008 -- 2012: Applied Parallel Computing Scientist II
+### Batelle Inc.: 2008 - 2012: Applied Parallel Computing Scientist II
 
-#### 2011 -- 2012: Modernize open-source biomolecular research application
+#### 2011 - 2012: Modernize open-source biomolecular research application
 
 * Anchored modernization team for
   [open-source biomolecular software project](https://github.com/Electrostatics/apbs)
@@ -96,7 +93,7 @@ for personal and professional development within vibrant collaborative working e
   build system while reducing overhead and improving maintainability of build scripts.
 
 
-#### 2010 -- 2011:  Human tracking in gigapixel video streams of high-traffic environments
+#### 2010 - 2011:  Human tracking in gigapixel video streams of high-traffic environments
 
 * Collaborated with premier university research team specializing in computer vision.
 * Converged with two off-team developers to transition exploratory research code written
@@ -106,7 +103,7 @@ for personal and professional development within vibrant collaborative working e
   compute cluster using ZeroMQ for low-latency inter-process communication.
 
 
-#### 2008 -- 2010:  Detection and classification of objects in gigapixel images
+#### 2008 - 2010:  Detection and classification of objects in gigapixel images
 
 * Researched and developed object detectors that hunted for ~2500 pixel objects in ~10
   gigapixel images utilizing OpenMP to locally optimize searches.
@@ -120,7 +117,7 @@ for personal and professional development within vibrant collaborative working e
 
 ## Education
 
-### 2004 -- 2008:  Washington State University: Computer Science B.S.
+### 2004 - 2008:  Washington State University: Computer Science B.S.
 
 * Graduated Cum Laude
 * Focused on Scientific Computing, Machine Learning, and Parallel Computing
