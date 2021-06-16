@@ -1,9 +1,7 @@
 # Tucker Beck
-Vancouver WA / Portland OR
-
-[tucker.beck@gmail.com](tucker.beck@gmail.com)
-
-[509.713.2325](tel:5097132325)
+[📍](https://goo.gl/maps/zgVAgxrRwfM1EPpf9)
+[📧](tucker.beck@gmail.com)
+[🛠️](https://github.com/dusktreader)
 
 
 ## Summary
@@ -13,7 +11,7 @@ full-stack while leading my team with velocity and empathy. Seeking growth oppor
 for personal and professional development within vibrant collaborative working environments.
 
 
-## Technical Capbility Highlights
+## Technical Capability Highlights
 
 * Languages: Python, TypeScript/JavaScript, Perl, C++
 * Technologies: FastAPI, Flask, Angular, Docker, Kafka, SQLAlchemy, Spark, Postgres
