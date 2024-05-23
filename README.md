@@ -6,19 +6,53 @@
 
 ## Summary
 
-Passionate Engineering Team Lead dedicated to delivering quality software throughout the
-full software stack while leading my team with velocity and empathy. Seeking growth
-opportunities for personal and professional development within vibrant collaborative
-working environments.
+Passionate Engineering Manager dedicated to delivering quality software while leading my
+team with velocity and empathy. Seeking growth opportunities for personal and
+professional development within vibrant collaborative working environments.
 
 
 ## Technical Capability Highlights
 
 * **Languages**: Python, TypeScript/JavaScript, Perl, C++
 * **Technologies**: FastAPI, Flask, Angular, Docker, Kafka, SQLAlchemy, Spark, Postgres
+* **Platforms**: ClickUp, JIRA, Slack, Google Workspace
 
 
 ## Professional Experience
+
+### [Omnivector Solutions](https://www.omnivector.io/): Engineering Manager
+
+#### 2021 - Present: Engineering Process Improvements and Team Management
+
+* Developed complete Engineering Development process including comprehensive workflow
+  diagrams and extensive documentation of the entire engineering lifecycle.
+* Oversaw migration from Monday.com to ClickUp and established workspaces and workflows
+  adapted to the Engineering Development process.
+* Established SCRUM-based methodology for engineering team to coordinate development,
+  measure progress, and continuously improve engineering process.
+* Instituted regular One-on-One meetings with 8 direct reports to track professional
+  development and establish constructive candor in team communication.
+* Conducted performance reviews for direct reports to assess progress and establish
+  improvement goals.
+
+
+#### 2021 - Present: Vantage HPC Platform
+
+* Directed development of the [Vantage](https://vantagehpc.io) HPC SAAS platform from
+  ideation through public-facing deployment in production environments.
+* Produced specs and project plan for enabling subscriptions to the Vantage platform
+  through the [AWS Marketplace](https://aws.amazon.com/marketplace).
+* Refactored [Jobbergate](https://github.com/omnivector-solutions/jobbergate) OSS
+  project to integrate with Vantage platform including development of server-side agent
+  with remote Slurm job submission capabilities.
+* Developed custom git branching model for Vantage projects based on the
+  [Stable Mainline](https://www.bitsnbites.eu/a-stable-mainline-branching-model-for-git/)
+  model to support multiple concurrent deployments of the product and maintain
+  repository consistency.
+* Lead effort to produce [technical documentation](https://docs.vantagehpc.io/) for the
+  Vantage product by contributing copy for many sections and making quality improvements
+  throughout.
+
 
 ### [Office Ally](https://cms.officeally.com/): Web Development Team Lead
 
