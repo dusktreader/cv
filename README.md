@@ -26,10 +26,12 @@ professional development within vibrant collaborative working environments.
 
 * Developed complete Engineering Development process including comprehensive workflow
   diagrams and extensive documentation of the entire engineering lifecycle.
-* Oversaw migration from Monday.com to ClickUp and established workspaces and workflows
-  adapted to the Engineering Development process.
-* Established SCRUM-based methodology for engineering team to coordinate development,
-  measure progress, and continuously improve engineering process.
+* Oversaw migration from [Monday.com](https://monday.com/) to
+  [ClickUp](https://clickup.com) and established workspaces and workflows adapted to the
+  Engineering Development process.
+* Established [SCRUM](https://scrum.org)-based methodology for engineering team to
+  coordinate development, measure progress, and continuously improve engineering
+  process.
 * Instituted regular One-on-One meetings with 8 direct reports to track professional
   development and establish constructive candor in team communication.
 * Conducted performance reviews for direct reports to assess progress and establish
@@ -56,7 +58,7 @@ professional development within vibrant collaborative working environments.
 
 ### [Office Ally](https://cms.officeally.com/): Web Development Team Lead
 
-#### 2020 - Present: Genomics Project & Transition to Team Lead
+#### 2020 - 2021: Genomics Project & Transition to Team Lead
 
 * Piloted effort to integrate lab reports and processing statuses from genomic testing
   venture project into [Patient Ally](https://www.patientally.com).
