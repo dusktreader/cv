@@ -14,8 +14,13 @@ professional development within vibrant collaborative working environments.
 ## Technical Capability Highlights
 
 * **Languages**: Python, TypeScript/JavaScript, Perl, C++
-* **Technologies**: FastAPI, Flask, Angular, Docker, Kafka, SQLAlchemy, Spark, Postgres
+* **Technologies**: FastAPI, Flask, Angular, Kubernetes, Docker, SQLAlchemy, Spark, Postgres
 * **Platforms**: ClickUp, JIRA, Slack, Google Workspace
+
+
+## Certifications
+
+* **[Certified Kubernetes Application Developer (CKAD)](https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/ffc1c3da-f2eb-4056-ad55-2030dde6eb86-tucker-beck-4c813b35-c62b-4ba4-aa4f-39e8bf55a42f-certificate.pdf)**: 2024
 
 
 ## Professional Experience
@@ -47,6 +52,9 @@ professional development within vibrant collaborative working environments.
 * Refactored [Jobbergate](https://github.com/omnivector-solutions/jobbergate) OSS
   project to integrate with Vantage platform including development of server-side agent
   with remote Slurm job submission capabilities.
+* Built [Armasec](https://github.com/omnivector-solutions/armasec) OSS Auth package for
+  FastAPI to enable strong and reliable security for python micorservices back by OIDC
+  providers including Auth0 and Keycloak.
 * Developed custom git branching model for Vantage projects based on the
   [Stable Mainline](https://www.bitsnbites.eu/a-stable-mainline-branching-model-for-git/)
   model to support multiple concurrent deployments of the product and maintain
