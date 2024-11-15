@@ -1,8 +1,8 @@
 # Tucker Beck
 
-[📍 Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9) /
-[📧 tucker.beck@gmail.com](tucker.beck@gmail.com) /
-[🛠️ dusktreader@github](https://github.com/dusktreader)
+ [Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9) /
+ &nbsp; [Tucker.beck@gmail.com](tucker.beck@gmail.com) /
+ &nbsp; [dusktreader@github](https://github.com/dusktreader)
 
 ## Summary
 
@@ -14,7 +14,7 @@ professional development within vibrant collaborative working environments.
 ## Technical Capability Highlights
 
 * **Languages**: Python, TypeScript/JavaScript, Perl, C++
-* **Technologies**: FastAPI, Flask, Angular, Kubernetes, Docker, SQLAlchemy, Spark, Postgres
+* **Technologies**: FastAPI, Angular, Kubernetes, Docker, SQLAlchemy, Spark, Postgres
 * **Platforms**: ClickUp, JIRA, Slack, Google Workspace
 
 

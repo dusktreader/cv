@@ -1,0 +1,12 @@
+[project]
+name = "cv"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "auto-name-enum>=2.0.0",
+    "markdown>=3.7",
+    "typer>=0.13.0",
+    "weasyprint>=63.0",
+]
