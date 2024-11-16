@@ -10,9 +10,9 @@
 }
 
 @font-face {
-  font-family: 'FiraCode';
+  font-family: 'NotoEmoji';
   font-style: normal;
-  src: url("FiraCodeNerdFont-Regular.ttf") format('truetype');
+  src: url("NotoEmoji-Regular.ttf") format('truetype');
 }
 
 :root {
@@ -136,5 +136,5 @@ body {
 }
 
 .emoji {
-  font-family: FiraCode;
+  font-family: NotoEmoji;
 }
