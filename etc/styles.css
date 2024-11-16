@@ -91,9 +91,17 @@ h2 {
   margin-bottom: 0.1em;
 }
 
+h2 + ul {
+  margin-top: 0.0em;
+}
+
 h3 {
   margin-top: 0.1em;
   margin-bottom: 0.1em;
+}
+
+h3 + ul {
+  margin-top: 0.0em;
 }
 
 ul + h3 {
@@ -103,7 +111,11 @@ ul + h3 {
 h4 {
   font-family: FiraSansBold;
   margin-top: 0.1em;
-  margin-bottom: 0.1em;
+  margin-bottom: 0.2em;
+}
+
+h4 + ul {
+  margin-top: 0.0em;
 }
 
 p {
@@ -111,18 +123,17 @@ p {
 }
 
 li {
-  margin-left: -1.7em;
-  /* How the fuck do I get space after the bullet???*/
-  /* padding-inline-start: 10em; */
+  padding-left: 0.0em;
 }
 
 ul {
-  list-style-type: none;
-  margin-top: 0.1em;
+  padding-left: 1.2em;
+  list-style-type: "\2771\00a0";
+  list-style-position: outside;
 }
 
-li::marker {
-  content: "\2771";
+ul li {
+  margin-top: 0.4em;
 }
 
 strong {
