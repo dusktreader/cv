@@ -1,0 +1,19 @@
+a {
+  color: var(--seattle-blue2);
+}
+
+h1 {
+  color: var(--tokyo-bluegray2);
+}
+
+h2 {
+  color: var(--seattle-orange);
+}
+
+h3 {
+  color: var(--tokyo-bluegray2);
+}
+
+body {
+  color: var(--tokyo-bluegray2);
+}
