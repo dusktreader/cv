@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.13"
 
 [[package]]
@@ -74,7 +75,7 @@ name = "click"
 version = "8.1.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "platform_system == 'Windows'" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/96/d3/f04c7bfcf5c1862a2a5b845c6b2b360488cf47af55dfa79c98f6a6bf98b5/click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de", size = 336121 }
 wheels = [
@@ -106,12 +107,17 @@ wheels = [
 [[package]]
 name = "cv"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "auto-name-enum" },
     { name = "markdown" },
     { name = "typer" },
     { name = "weasyprint" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pyclean" },
 ]
 
 [package.metadata]
@@ -121,6 +127,9 @@ requires-dist = [
     { name = "typer", specifier = ">=0.13.0" },
     { name = "weasyprint", specifier = ">=63.0" },
 ]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pyclean", specifier = ">=3.1.0" }]
 
 [[package]]
 name = "fonttools"
@@ -193,6 +202,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/7b/f9/cfaa5082ca9bc4a6de66ffe1c12c2d90bf09c309a5f52b27759a596900e7/pillow-10.4.0-cp313-cp313-win32.whl", hash = "sha256:551d3fd6e9dc15e4c1eb6fc4ba2b39c0c7933fa113b220057a34f4bb3268a060", size = 2235603 },
     { url = "https://files.pythonhosted.org/packages/01/6a/30ff0eef6e0c0e71e55ded56a38d4859bf9d3634a94a88743897b5f96936/pillow-10.4.0-cp313-cp313-win_amd64.whl", hash = "sha256:030abdbe43ee02e0de642aee345efa443740aa4d828bfe8e2eb11922ea6a21ea", size = 2554972 },
     { url = "https://files.pythonhosted.org/packages/48/2c/2e0a52890f269435eee38b21c8218e102c621fe8d8df8b9dd06fabf879ba/pillow-10.4.0-cp313-cp313-win_arm64.whl", hash = "sha256:5b001114dd152cfd6b23befeb28d7aee43553e2402c9f159807bf55f33af8a8d", size = 2243375 },
+]
+
+[[package]]
+name = "pyclean"
+version = "3.1.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/04/6c/a7c0cfd4013405408aa894ee2dace6fdbad58f379344aba2396dfea85d46/pyclean-3.1.0.tar.gz", hash = "sha256:d23fa900558696e08c79401c79f242fe6f7f38fd58ccd035f875a01c5bc7a6fc", size = 46150 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/cf/6d/a0d36ecfe8849d029f0dfbac5733e8b74732ff3f86fa75a501107903c54b/pyclean-3.1.0-py3-none-any.whl", hash = "sha256:46652f7416816924cab565cd045d0c341237aced0368a3727d66b5192c16728c", size = 21588 },
 ]
 
 [[package]]

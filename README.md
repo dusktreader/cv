@@ -13,7 +13,7 @@ professional development within vibrant collaborative working environments.
 
 ## Technical Capability Highlights
 
-* **Languages**: Python, TypeScript/JavaScript, Perl, C++
+* **Languages**: Python, Go, TypeScript/JavaScript, Perl, C++
 * **Technologies**: FastAPI, Angular, Kubernetes, Docker, SQLAlchemy, Spark, Postgres
 * **Platforms**: ClickUp, JIRA, Slack, Google Workspace
 
@@ -25,9 +25,9 @@ professional development within vibrant collaborative working environments.
 
 ## Professional Experience
 
-### [Omnivector Solutions](https://www.omnivector.io/): Engineering Manager
+### [Omnivector Solutions](https://omnivector.ai/): Engineering Manager
 
-#### 2021 - Present: Engineering Process Improvements and Team Management
+#### 2021 - 2025: Engineering Process Improvements and Team Management
 
 * Developed complete Engineering Development process including comprehensive workflow
   diagrams and extensive documentation of the entire engineering lifecycle.
@@ -43,7 +43,7 @@ professional development within vibrant collaborative working environments.
   improvement goals.
 
 
-#### 2021 - Present: Vantage HPC Platform
+#### 2021 - 2025: Vantage HPC Platform
 
 * Directed development of the [Vantage](https://vantagehpc.io) HPC SAAS platform from
   ideation through public-facing deployment in production environments.
