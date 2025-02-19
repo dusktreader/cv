@@ -14,7 +14,7 @@ professional development within vibrant collaborative working environments.
 ## Technical Capability Highlights
 
 * **Languages**: Python, Go, TypeScript/JavaScript, Perl, C++
-* **Technologies**: FastAPI, Angular, Kubernetes, Docker, SQLAlchemy, Spark, Postgres
+* **Technologies**: FastAPI, Kubernetes, Slurm, Docker, SQLAlchemy, Spark, Postgres
 * **Platforms**: ClickUp, JIRA, Slack, Google Workspace
 
 
