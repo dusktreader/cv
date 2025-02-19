@@ -6,9 +6,12 @@
 
 ## Summary
 
-Passionate Engineering Manager dedicated to delivering quality software while leading my
-team with velocity and empathy. Seeking growth opportunities for personal and
-professional development within vibrant collaborative working environments.
+I'm an Engineering Leader fueled by an intent to assemble powerhouse dev teams that
+relentlessly deliver high-impact software solutions. I lead with a fusion of empathy
+and urgency; it's my mission to deeply understand my people and the problems we face.
+Building a culture of determined collaboration and fearless innovation is crucial for
+the journey ahead. I'm committed to building teams where partnership, expertise, and
+tenacity are at the core of everything we do.
 
 
 ## Technical Capability Highlights
