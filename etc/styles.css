@@ -15,6 +15,7 @@
   src: url("NotoEmoji-Regular.ttf") format('truetype');
 }
 
+/* This is useful for palette editing: https://supercolorpalette.com/ */
 :root {
   /* Coastal Palette */
   --coastal-purple: #8078C4;
