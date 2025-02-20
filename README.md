@@ -6,12 +6,12 @@
 
 ## Summary
 
-I'm an Engineering Leader fueled by an intent to assemble powerhouse dev teams that
-relentlessly deliver high-impact software solutions. I lead with a fusion of empathy
-and urgency; it's my mission to deeply understand my people and the problems we face.
-Building a culture of determined collaboration and fearless innovation is crucial for
-the journey ahead. I'm committed to building teams where partnership, expertise, and
-tenacity are at the core of everything we do.
+I'm an Engineering Leader focused on assembling powerhouse dev teams that consistently
+deliver high-impact software solutions. I lead with a fusion of empathy and resolve;
+it's my mission to deeply understand my people, the problems we face, and pragmatic
+strategies built on our strengths. Building a culture of determined collaboration
+and fearless innovation is crucial for the journey ahead. I'm committed to building
+teams where partnership, expertise, and tenacity are at the core of everything we do.
 
 
 ## Technical Capability Highlights

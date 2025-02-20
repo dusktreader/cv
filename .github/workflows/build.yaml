@@ -1,0 +1,33 @@
+name: build-pdfs
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-rc[0-9]+'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+
+    - name: Install python
+      run:  uv python install 3.13
+
+    - name: Build PDFs
+      run:  make all
+
+    - name: Find artifacts
+      run:
+
+    - name: Create release
+      uses: actions/create-release@v1
+      with:
+        draft: false
+        prerelease: false
+        release_name: ${{ github.ref }}
+        tag_name: ${{ github.ref }}
+        artifacts:

@@ -3,13 +3,15 @@
 SHELL:=/bin/bash
 
 light:  ## Generate the light version of my cv
-	uv run render --color=light
+	uv run render --color=light --output=tucker-beck-cv--light.pdf
 
 night:  ## Generate the night version of my cv
-	uv run render --color=night --output=tucker-beck-cv.pdf
+	uv run render --color=night --output=tucker-beck-cv--night.pdf
 
 sizzle:  ## Generate the sizzle version of my cv
-	uv run render --color=sizzle
+	uv run render --color=sizzle --output=tucker-beck-cv--sizzle.pdf
+
+all: light night sizzle  ## Generate all versions of my cv
 
 clean:  ## Clean up build artifacts and other junk
 	@uv run pyclean . --debris
