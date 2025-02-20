@@ -21,13 +21,9 @@ jobs:
       run:  make all
 
     - name: Find artifacts
-      run:
+      run:  echo "pdfs=$(ls -1 *.pdf | tr '\n' ',' | sed 's/,$//')" >> $GITHUB_OUTPUT
 
     - name: Create release
-      uses: actions/create-release@v1
+      uses: actions/release-action@v1
       with:
-        draft: false
-        prerelease: false
-        release_name: ${{ github.ref }}
-        tag_name: ${{ github.ref }}
-        artifacts:
+        artifacts: ${{ steps.vars.outputs.pdfs }}
