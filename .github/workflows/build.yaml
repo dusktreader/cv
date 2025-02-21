@@ -29,4 +29,3 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         artifacts: ${{ steps.vars.outputs.pdfs }}
-        token: ${{ secrets.GITHUB_TOKEN }
