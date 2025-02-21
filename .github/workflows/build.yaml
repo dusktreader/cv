@@ -21,9 +21,10 @@ jobs:
       run:  make all
 
     - name: Find artifacts
-      run:  echo "pdfs=$(ls -1 *.pdf | tr '\n' ',' | sed 's/,$//')" >> $GITHUB_OUTPUT
+      id:   artifacts
+      run:  echo "pdfs=$(ls -1 *.pdf | tr '\n' ',' | sed 's/,$//')" | tee $GITHUB_OUTPUT
 
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: ${{ steps.vars.outputs.pdfs }}
+        artifacts: ${{ steps.artifacts.outputs.pdfs }}
