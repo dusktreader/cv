@@ -24,10 +24,6 @@ jobs:
       run:  echo "pdfs=$(ls -1 *.pdf | tr '\n' ',' | sed 's/,$//')" >> $GITHUB_OUTPUT
 
     - name: Create release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: actions/release-action@v1
       with:
         artifacts: ${{ steps.vars.outputs.pdfs }}
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
