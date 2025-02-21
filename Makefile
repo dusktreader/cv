@@ -3,13 +3,13 @@
 SHELL:=/bin/bash
 
 light:  ## Generate the light version of my cv
-	uv run render --color=light --output=tucker-beck-cv--light.pdf
+	uv run render --color=light
 
 night:  ## Generate the night version of my cv
-	uv run render --color=night --output=tucker-beck-cv--night.pdf
+	uv run render --color=night
 
 sizzle:  ## Generate the sizzle version of my cv
-	uv run render --color=sizzle --output=tucker-beck-cv--sizzle.pdf
+	uv run render --color=sizzle
 
 all: light night sizzle  ## Generate all versions of my cv
 

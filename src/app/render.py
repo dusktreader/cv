@@ -19,12 +19,14 @@ class ColorScheme(AutoNameEnum):
 @app.command()
 def render(
     color: Annotated[ColorScheme, typer.Option(help="Render with color scheme.")] = ColorScheme.light,
-    output: Annotated[Path, typer.Option(help="The cv file to produce.")] = Path("tucker-beck-cv.pdf"),
+    prefix: Annotated[str, typer.Option(help="The prefix for generated filenames.")] = "tucker-beck-cv",
 ):
     md_path = Path("README.md")
     html_content = markdown(md_path.read_text())
     css_paths = [Path("etc/styles.css"), Path(f"etc/{color}.css")]
-    HTML(string=html_content).write_pdf(output, stylesheets=css_paths)
+    filename = f"{prefix}--{color}.pdf"
+    html = HTML(string=html_content)
+    html.write_pdf(filename, stylesheets=css_paths)
 
 
 if __name__ == "__main__":
