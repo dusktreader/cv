@@ -1,0 +1,59 @@
+/* This is useful for palette editing: https://supercolorpalette.com/ */
+:root {
+  /* Coastal Palette */
+  --coastal-purple: #8078C4;
+  --coastal-blue1: #094049;
+  --coastal-blue2: #056585;
+  --coastal-blue3: #227DAA;
+  --coastal-green1: #4D7C13;
+  --coastal-green2: #6CA329;
+  --coastal-red: #BE4B6C;
+  --coastal-orange1: #FFA07A;
+  --coastal-gray: #B4BEE4;
+  --coastal-orange2: #FFC8B8;
+  --coastal-light: #EEE2F9;
+
+  /* Tokyo Night Palette */
+  --tokyo-dark1: #1f2335;
+  --tokyo-dark2: #24283b;
+  --tokyo-dark3: #292e42;
+  --tokyo-gray1: #3b4261;
+  --tokyo-gray2: #414868;
+  --tokyo-gray3: #545c7e;
+  --tokyo-gray4: #565f89;
+  --tokyo-gray5: #737aa2;
+  --tokyo-gray6: #a9b1d6;
+  --tokyo-gray7: #c0caf5;
+  --tokyo-bluegray1: #394b70;
+  --tokyo-bluegray2: #3d59a1;
+  --tokyo-blue1: #7aa2f7;
+  --tokyo-blue2: #7dcfff;
+  --tokyo-blue3: #b4f9f8;
+  --tokyo-purple2: #bb9af7;
+  --tokyo-purple1: #9d7cd8;
+  --tokyo-orange1: #ff9e64;
+  --tokyo-orange2: #ffc777;
+  --tokyo-green3: #c3e88d;
+  --tokyo-green2: #4fd6be;
+  --tokyo-green1: #41a6b5;
+  --tokyo-salmon: #ff757f;
+  --tokyo-red: #c53b53;
+  --tokyo-pink: #ff007c;
+
+  /* Seattle Night Palette */
+  --seattle-dark1: #000000;
+  --seattle-dark2: #242844;
+  --seattle-red: #7A1F36;
+  --seattle-green1: #36948C;
+  --seattle-green2: #B5E2DB;
+  --seattle-brown: #726D59;
+  --seattle-orange: #D8841A;
+  --seattle-blue1: #3B61C3;
+  --seattle-pink: #CE55BF;
+  --seattle-blue2: #4387ED;
+  --seattle-gray: #9081B6;
+  --seattle-yellow1: #C0B18C;
+  --seattle-yellow2: #F1F071;
+  --seattle-light: #FFFEF8;
+}
+

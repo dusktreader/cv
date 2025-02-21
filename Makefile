@@ -15,6 +15,7 @@ all: light night sizzle  ## Generate all versions of my cv
 
 clean:  ## Clean up build artifacts and other junk
 	@uv run pyclean . --debris
+	@rm -f *.html
 	@rm -f *.pdf
 
 # Recipe stolen from: https://gist.github.com/prwhite/8168133?permalink_comment_id=4160123#gistcomment-4160123

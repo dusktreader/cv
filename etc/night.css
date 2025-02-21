@@ -1,20 +1,38 @@
+:root {
+  /* Seattle Night Palette */
+  --night-dark1: #000000;
+  --night-dark2: #242844;
+  --night-red: #7A1F36;
+  --night-green1: #36948C;
+  --night-green2: #B5E2DB;
+  --night-brown: #726D59;
+  --night-orange: #D8841A;
+  --night-blue1: #3B61C3;
+  --night-pink: #CE55BF;
+  --night-blue2: #4387ED;
+  --night-gray: #9081B6;
+  --night-yellow1: #C0B18C;
+  --night-yellow2: #F1F071;
+  --night-light: #FFFEF8;
+}
+
 a {
-  color: var(--seattle-blue2);
+  color: var(--night-blue2);
 }
 
 h1 {
-  color: var(--seattle-orange);
+  color: var(--night-orange);
 }
 
 h2 {
-  color: var(--seattle-green2);
+  color: var(--night-green2);
 }
 
 h3 {
-  color: var(--seattle-yellow1);
+  color: var(--night-yellow1);
 }
 
 body {
-  color: var(--seattle-light);
-  background-color: var(--seattle-dark2);
+  color: var(--night-light);
+  background-color: var(--night-dark2);
 }

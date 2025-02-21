@@ -1,19 +1,26 @@
+:root {
+  /* Sizzle Palette */
+  --sizzle-blue2: #4387ED;
+  --sizzle-bluegray2: #3d59a1;
+  --sizzle-orange: #D8841A;
+}
+
 a {
-  color: var(--seattle-blue2);
+  color: var(--sizzle-blue2);
 }
 
 h1 {
-  color: var(--tokyo-bluegray2);
+  color: var(--sizzle-bluegray2);
 }
 
 h2 {
-  color: var(--seattle-orange);
+  color: var(--sizzle-orange);
 }
 
 h3 {
-  color: var(--tokyo-bluegray2);
+  color: var(--sizzle-bluegray2);
 }
 
 body {
-  color: var(--tokyo-bluegray2);
+  color: var(--sizzle-bluegray2);
 }
