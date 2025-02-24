@@ -23,78 +23,13 @@ a:hover {
   text-decoration: underline;
 }
 
-h1 {
-  font-family: FiraSansBold;
-  margin-bottom: 0.1em;
-  font-size: 1.5em;
-}
-
-h2 {
-  margin-top: 1.5em;
-  margin-bottom: 0.1em;
-  font-size: 1.2em;
-}
-
-h2 + ul {
-  margin-top: 0.0em;
-}
-
-h3 {
-  margin-top: 0.1em;
-  margin-bottom: 0.1em;
-  font-size: 1.0em;
-}
-
-h3 + ul {
-  margin-top: 0.0em;
-}
-
-ul + h3 {
-  margin-top: 0.5em;
-}
-
-h4 {
-  font-family: FiraSansBold;
-  margin-top: 0.1em;
-  margin-bottom: 0.1em;
-  font-size: 0.75em;
-}
-
-h4 + ul {
-  margin-top: 0.0em;
-}
-
-.header p {
-  margin-top: 0.1em;
-  font-size:  0.75em;
-}
-
-li {
-  padding-left: 0.0em;
-}
-
-.main li {
-  font-size:  0.6em;
-}
-
-.main ul {
-  padding-left: 0.75em;
-  list-style-type: "\2771\00a0";
-  list-style-position: outside;
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-ul li {
-  margin-top: 0.4em;
-}
-
 strong {
   font-family: FiraSansBold;
+}
+
+html {
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -103,20 +38,21 @@ body {
   font-style: normal;
   margin: 0;
   padding: 0;
-}
-
-.emoji {
-  font-family: NotoEmoji;
+  width: 100%;
+  height: 100%;
+  color: var(--body-foreground-color);
+  background-color: var(--body-background-color);
+  border-style: solid;
+  border-width: thin;
 }
 
 .container {
-  padding: 1em;
+  margin: 0em;
+  padding: 0em;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.header {
-  margin-bottom: 0em;
 }
 
 .bottom {
@@ -126,18 +62,136 @@ body {
   flex-direction: row;
 }
 
+@page {
+  margin: 1em;
+}
+
+
+/* Header styles */
+
+.header {
+  padding-bottom: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background-color: var(--header-background-color);
+}
+
+
+.header h1 {
+  font-family: FiraSansBold;
+  margin-bottom: 0.1em;
+  font-size: 1.5em;
+  color: var(--header-title-color);
+}
+
+.header p {
+  margin-top: 0.1em;
+  font-size:  0.75em;
+  color: var(--header-text-color);
+}
+
+.header a {
+  color: var(--header-link-color);
+}
+
+
+
+/* Sidebar styles */
+
 .sidebar {
   width: 13em;
-  box-sizing: border-box;
-  position: fixed;
+  width: 25%;
+  height: 100%;
+  padding-left: 0.5em;
+  padding-right: 0.25em;
+  background-color: var(--sidebar-background-color);
 }
+
+
+.sidebar h2 {
+  margin-top: 0.5em;
+  margin-bottom: 0.25em;
+  font-size: 1.25em;
+  color: var(--sidebar-heading-color);
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding-left: 0em;
+  margin-left: 0em;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  color: var(--sidebar-text-color);
+}
+
+.sidebar li+li {
+  margin-top: 0.75em;
+}
+
+.sidebar ul+h2 {
+  margin-top: 1.0em;
+}
+
+.sidebar a {
+  color: var(--sidebar-link-color);
+}
+
+
+/* Main styles */
 
 .main {
   flex: 1;
-  margin-left: 14em;
-  text-align: justify;
+  height: 100%;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background-color: var(--main-background-color);
 }
 
-@page {
-  margin: 1em;
+.main h2 {
+  margin-top: 0.5em;
+  margin-bottom: 0.25em;
+  font-size: 1.25em;
+  color: var(--main-title-color);
+}
+
+.main h3 {
+  margin-top: 0.0em;
+  margin-bottom: 0.1em;
+  font-size: 1.0em;
+  color: var(--main-heading-color);
+}
+
+.main h4 {
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+  font-family: FiraSansBold;
+  font-size: 0.75em;
+  color: var(--main-subheading-color);
+}
+
+.main ul {
+  margin-top: 0.0em;
+  padding-left: 0.75em;
+  list-style-type: "\2771\00a0";
+  list-style-position: outside;
+  color: var(--main-text-color);
+}
+
+.main li {
+  font-size:  0.7em;
+}
+
+.main ul+h2 {
+  margin-top: 1.0em;
+}
+
+.main a {
+  color: var(--main-link-color);
+}
+
+
+/* Set the emoji font */
+
+.emoji {
+  font-family: NotoEmoji;
 }

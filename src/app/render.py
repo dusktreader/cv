@@ -14,7 +14,7 @@ app = typer.Typer(rich_markup_mode="rich")
 class ColorScheme(AutoNameEnum):
     light = auto()
     night = auto()
-    sizzle = auto()
+    bold = auto()
 
 
 @app.command()

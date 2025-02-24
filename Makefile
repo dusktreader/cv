@@ -8,10 +8,10 @@ light:  ## Generate the light version of my cv
 night:  ## Generate the night version of my cv
 	uv run render --color=night
 
-sizzle:  ## Generate the sizzle version of my cv
-	uv run render --color=sizzle
+bold:  ## Generate the bold version of my cv
+	uv run render --color=bold
 
-all: light night sizzle  ## Generate all versions of my cv
+all: light night bold  ## Generate all versions of my cv
 
 clean:  ## Clean up build artifacts and other junk
 	@uv run pyclean . --debris
