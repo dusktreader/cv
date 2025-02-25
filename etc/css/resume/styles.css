@@ -1,18 +1,18 @@
 @font-face {
   font-family: 'FiraSans';
-  src: url("FiraSans-Regular.ttf") format('truetype');
+  src: url("../fonts/FiraSans-Regular.ttf") format('truetype');
 }
 
 @font-face {
   font-family: 'FiraSansBold';
   font-weight: 900;
-  src: url("FiraSans-Bold.ttf") format('truetype');
+  src: url("../fonts/FiraSans-Bold.ttf") format('truetype');
 }
 
 @font-face {
   font-family: 'NotoEmoji';
   font-style: normal;
-  src: url("NotoEmoji-Regular.ttf") format('truetype');
+  src: url("../fonts/NotoEmoji-Regular.ttf") format('truetype');
 }
 
 a:link {

@@ -1,14 +1,13 @@
 from pathlib import Path
 from typing import Annotated
-from xml.dom.minidom import parseString, Document, Node
+from xml.dom.minidom import parseString, Node
 
 import typer
 from auto_name_enum import AutoNameEnum, auto
 from markdown import markdown
 from weasyprint import HTML
 
-
-app = typer.Typer(rich_markup_mode="rich")
+from app.main import cli
 
 
 class ColorScheme(AutoNameEnum):
@@ -17,8 +16,8 @@ class ColorScheme(AutoNameEnum):
     bold = auto()
 
 
-@app.command()
-def render(
+@cli.command()
+def resume(
     color: Annotated[ColorScheme, typer.Option(help="Render with color scheme.")] = ColorScheme.light,
     prefix: Annotated[str, typer.Option(help="The prefix for generated filenames.")] = "tucker-beck-cv",
     dump_html: Annotated[bool, typer.Option(help="Dump HTML file.")] = False,
@@ -35,7 +34,7 @@ def render(
         html_path = Path(f"{name}.html")
         html_path.write_text(html_content)
 
-    css_paths = [Path("etc/styles.css"), Path(f"etc/{color}.css")]
+    css_paths = [Path("etc/css/resume/styles.css"), Path(f"etc/css/resume/{color}.css")]
     html = HTML(string=html_content)
     html.write_pdf(pdf_path, stylesheets=css_paths)
 
@@ -58,7 +57,7 @@ def injectDivs(html: str) -> str:
     doc = f"""
         <html>
             <head>
-                <title>Tucker Beck CV</title>
+                <title>Tucker Beck Resumé</title>
             </head>
             <body>
                 {html}
@@ -83,6 +82,20 @@ def injectDivs(html: str) -> str:
     sidebar_start = next(e for e in h2_elements if e.firstChild.data == "Skills")
     _move_nodes_in_place(header_div.nextSibling, sidebar_start, header_div)
 
+    contacts_div = dom.createElement("div")
+    contacts_div.setAttribute("class", "contacts")
+    title_element = header_div.getElementsByTagName("h1")[0]
+    header_div.insertBefore(contacts_div, title_element.nextSibling)
+    contacts_element = header_div.getElementsByTagName("p")[0]
+    _move_nodes_in_place(contacts_element, contacts_element.nextSibling, contacts_div)
+
+    # summary_div = dom.createElement("div")
+    # contacts_div.setAttribute("class", "contacts")
+    # title_element = header_div.getElementsByTagName("h1")[0]
+    # header_div.insertBefore(contacts_div, title_element.nextSibling)
+    # contacts_element = header_div.getElementsByTagName("p")[0]
+    # _move_nodes_in_place(contacts_element, contacts_element.nextSibling, contacts_div)
+
     bottom_div = dom.createElement("div")
     bottom_div.setAttribute("class", "bottom")
     container_div.insertBefore(bottom_div, header_div.nextSibling)
@@ -101,7 +114,3 @@ def injectDivs(html: str) -> str:
     _move_nodes_in_place(main_start, None, main_div)
 
     return dom.toprettyxml(indent="  ")
-
-
-if __name__ == "__main__":
-    app()

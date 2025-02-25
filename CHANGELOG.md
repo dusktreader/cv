@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v3.0.0 - 2025-02-27
+* Added utility to produce cover letter using job posting and LLM prompt
+
 ## v2.1.1 - 2025-02-25
 * Widened border to 2px to eliminate rendering artifact
 
