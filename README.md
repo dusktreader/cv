@@ -14,9 +14,10 @@ teams where partnership, expertise, and tenacity are at the core of everything w
 
 ## Skills
 
-* **Languages**: Python, Go, TypeScript/JavaScript, Perl, C++
-* **Technologies**: FastAPI, Kubernetes, Slurm, Docker, SQLAlchemy, Spark, Postgres
-* **Platforms**: ClickUp, JIRA, Slack, Google Workspace
+* **Languages**:    Python, Go, TypeScript/JavaScript, Perl, Java, C, C++, Erlang
+* **Technologies**: FastAPI, Kubernetes, Slurm, Angular, Docker, SQLAlchemy, Spark,
+                    Postgres, OpenCV
+* **Platforms**:    ClickUp, JIRA, Lucid, Slack, Teams, Google Workspace
 
 
 ## Certs
@@ -29,16 +30,16 @@ teams where partnership, expertise, and tenacity are at the core of everything w
 ### 2021 - 2025: [Omnivector Solutions](https://omnivector.ai/)
 #### Engineering Manager
 
-- Developed and documented comprehensive engineering processes and successfully migrated
-  project management to [ClickUp](https://clickup.com) to improve efficiency.
-- Established [SCRUM](https://scrum.org)-based methodology to enhance team productivity,
-  measure progress, and streamline development workflows.
+- Improved efficiency by developing and documenting comprehensive engineering processes
+  and successfully migrating project management to [ClickUp](https://clickup.com).
+- Enhanced team productivity and streamlined development workflows by establishing
+  [SCRUM](https://scrum.org)-based methodology and measuring efficiency improvements.
 - Directed the development of the [Vantage](https://vantagecompute.ai) HPC SAAS platform
   from ideation through public release.
 - Established standards and practices for development teams including git branching
   model, code quality baselines, and documentation requirements.
-- Conducted regular one-on-one meetings and performance reviews to manage team dynamics
-  and foster a culture of continuous improvement.
+- Fostered a culture of continuous improvement by conducting regular one-on-one meetings
+  and performance reviews to monitor and optimize team dynamics.
 - Built [Armasec](https://github.com/omnivector-solutions/armasec) OSS Auth package to
   enable security for Python APIs backed by OIDC providers including Auth0 and Keycloak.
 
