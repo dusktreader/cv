@@ -8,10 +8,12 @@ from typing import Annotated, Any
 import httpx
 import snick
 import typer
+from buzz import enforce_defined, handle_errors
 from inflection import parameterize
 from loguru import logger
 from markdown import markdown
 from openai import OpenAI
+from rich import print
 from rich.console import Console
 from rich.panel import Panel
 from rich.markdown import Markdown
@@ -28,7 +30,13 @@ def generate_letter(
     reprompts: list[tuple[str, str]] | None = None,
     fake: bool = False,
 ) -> str:
-    client = OpenAI(api_key=settings.OPENAI_API_KEY)
+
+    api_key: str = enforce_defined(
+        settings.OPENAI_API_KEY,
+        message="You must have OPENAI_API_KEY configured (env or .env)!",
+        raise_exc_class=ValueError,
+    )
+    client = OpenAI(api_key=api_key)
 
     prompt = f"""
         You are a professional resume writer and career coach. Your task is to generate
@@ -150,75 +158,83 @@ def letter(
     dump_html: Annotated[bool, typer.Option(help="Dump HTML file.")] = False,
     fake: Annotated[bool, typer.Option(help="Don't call OpenAI. Use a fake letter.")] = False,
 ):
-    resume_path = Path("README.md")
-    logger.debug(f"Loading resume from {resume_path}")
-    resume_text = resume_path.read_text()
+    with handle_errors(
+        "Failed to generate cover letter",
+        raise_exc_class=typer.Exit,
+        raise_kwargs=dict(code=1),
+        do_except=lambda dep: print(f"[red]{dep.final_message}[/red]"),
+        exc_builder=lambda ebp: ebp.raise_exc_class(*ebp.raise_args, **ebp.raise_kwargs),
+    ):
+        resume_path = Path("README.md")
+        logger.debug(f"Loading resume from {resume_path}")
+        resume_text = resume_path.read_text()
 
-    logger.debug(f"Pulling posting from {posting_url}")
-    response = httpx.get(posting_url)
-    response.raise_for_status()
-    posting_text = response.text
+        logger.debug(f"Pulling posting from {posting_url}")
+        response = httpx.get(posting_url)
+        response.raise_for_status()
+        posting_text = response.text
 
-    kwargs: dict[str, Any] = dict(fake=fake)
-    if example_letter:
-        logger.debug(f"Loading example letter from {example_letter}")
-        kwargs["example_text"] = example_letter.read_text()
+        kwargs: dict[str, Any] = dict(fake=fake)
+        if example_letter:
+            logger.debug(f"Loading example letter from {example_letter}")
+            kwargs["example_text"] = example_letter.read_text()
 
-    logger.debug("Generating letter")
-    text = generate_letter(posting_text, resume_text, **kwargs)
+        logger.debug("Generating letter")
 
-    accepted = False
-    reprompts = []
+        text = generate_letter(posting_text, resume_text, **kwargs)
 
-    console = Console()
+        accepted = False
+        reprompts = []
 
-    while not accepted:
-        console.print()
-        console.print("Here is your generated letter:")
-        console.print()
-        console.print(Panel(Markdown(text), title="Generated Letter"))
+        console = Console()
 
-        accepted = typer.confirm("Are you satisfied with the letter?", default=True)
+        while not accepted:
+            console.print()
+            console.print("Here is your generated letter:")
+            console.print()
+            console.print(Panel(Markdown(text), title="Generated Letter"))
 
-        if not accepted:
-            reprompts.append(
-                (
-                    text,
-                    typer.prompt(
-                        "What can I do to fix it?",
-                        default="Just try again"
-                    ),
+            accepted = typer.confirm("Are you satisfied with the letter?", default=True)
+
+            if not accepted:
+                reprompts.append(
+                    (
+                        text,
+                        typer.prompt(
+                            "What can I do to fix it?",
+                            default="Just try again"
+                        ),
+                    )
                 )
-            )
-            kwargs["reprompts"] = reprompts
-            logger.debug("Regenerating letter based on feedback")
-            text = generate_letter(posting_text, resume_text, **kwargs)
+                kwargs["reprompts"] = reprompts
+                logger.debug("Regenerating letter based on feedback")
+                text = generate_letter(posting_text, resume_text, **kwargs)
 
-    edit = typer.confirm("Would you like to edit the letter?", default=False)
-    if edit:
-        logger.debug("Editing generated letter")
-        with tempfile.NamedTemporaryFile() as tmp_file:
-            tmp_path = Path(tmp_file.name)
-            tmp_path.write_text(text)
-            subprocess.run([os.environ["EDITOR"], str(tmp_path)])
-            text = tmp_path.read_text()
+        edit = typer.confirm("Would you like to edit the letter?", default=False)
+        if edit:
+            logger.debug("Editing generated letter")
+            with tempfile.NamedTemporaryFile() as tmp_file:
+                tmp_path = Path(tmp_file.name)
+                tmp_path.write_text(text)
+                subprocess.run([os.environ["EDITOR"], str(tmp_path)])
+                text = tmp_path.read_text()
 
-    logger.debug("Saving letter to file")
-    name = prefix
-    if company:
-        name += f"--{parameterize(company)}"
-    if position:
-        name += f"--{parameterize(position)}"
-    pdf_path = Path(f"{name}.pdf")
+        logger.debug("Saving letter to file")
+        name = prefix
+        if company:
+            name += f"--{parameterize(company)}"
+        if position:
+            name += f"--{parameterize(position)}"
+        pdf_path = Path(f"{name}.pdf")
 
-    html_content = markdown(text)
+        html_content = markdown(text)
 
-    if dump_html:
-        html_path = Path(f"{name}.html")
-        logger.debug(f"Dumping html to {html_path}")
-        html_path.write_text(html_content)
+        if dump_html:
+            html_path = Path(f"{name}.html")
+            logger.debug(f"Dumping html to {html_path}")
+            html_path.write_text(html_content)
 
-    css_paths = [Path("etc/css/letter/styles.css")]
-    html = HTML(string=html_content)
-    html.write_pdf(pdf_path, stylesheets=css_paths)
-    console.print(f"Cover letter saved to {pdf_path}")
+        css_paths = [Path("etc/css/letter/styles.css")]
+        html = HTML(string=html_content)
+        html.write_pdf(pdf_path, stylesheets=css_paths)
+        console.print(f"Cover letter saved to {pdf_path}")

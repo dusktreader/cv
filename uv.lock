@@ -146,6 +146,7 @@ dependencies = [
     { name = "loguru" },
     { name = "markdown" },
     { name = "openai" },
+    { name = "py-buzz" },
     { name = "pydantic-settings" },
     { name = "snick" },
     { name = "typer" },
@@ -165,6 +166,7 @@ requires-dist = [
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "markdown", specifier = ">=3.7" },
     { name = "openai", specifier = ">=1.65.1" },
+    { name = "py-buzz", specifier = ">=5.0.2" },
     { name = "pydantic-settings", specifier = ">=2.8.1" },
     { name = "snick", specifier = ">=1.4.1" },
     { name = "typer", specifier = ">=0.13.0" },
@@ -373,6 +375,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/06/1a/7737e7a0774da3c3824d654993cf57adc915cb04660212f03406334d8c0b/pprintpp-0.4.0.tar.gz", hash = "sha256:ea826108e2c7f49dc6d66c752973c3fc9749142a798d6b254e1e301cfdbc6403", size = 17995 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/4e/d1/e4ed95fdd3ef13b78630280d9e9e240aeb65cc7c544ec57106149c3942fb/pprintpp-0.4.0-py2.py3-none-any.whl", hash = "sha256:b6b4dcdd0c0c0d75e4d7b2f21a9e933e5b2ce62b26e1a54537f9651ae5a5c01d", size = 16952 },
+]
+
+[[package]]
+name = "py-buzz"
+version = "5.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/41/78/920a12f440acb94bc908cf58c28a085d455178e1400ab91c3fb52982aa0f/py_buzz-5.0.2.tar.gz", hash = "sha256:1f6e0c4a19f02f6f3a20d1667319170a0ccc53c099538e31681563cca855db93", size = 7188 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/29/f8/1647e6eba748ae23fc3c9846a0918cd4394d55688ddea1fc72f165a42173/py_buzz-5.0.2-py3-none-any.whl", hash = "sha256:09961b02f182189105ee84f3a67ddb927c03c8af840b6f0c89e1a8458a5f33b0", size = 7668 },
 ]
 
 [[package]]
