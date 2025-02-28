@@ -38,78 +38,110 @@ def generate_letter(
     )
     client = OpenAI(api_key=api_key)
 
-    prompt = f"""
-        You are a professional resume writer and career coach. Your task is to generate
-        a cover letter for a job application based on the provided job posting and
-        resume. You will be given a job posting and a resume, and you need to create a
-        tailored cover letter that highlights the candidate's qualifications and
-        suitability for the position.
+    messages = []
 
-        The job posting that follows is html scraped from a job board. It will contain
-        a lot of markup, but you should ignore it and focus on the text content.
+    messages.append(
+        dict(
+            role="developer",
+            content=f"""
+                You are a professional resume writer and career coach. Your task is to
+                generate a cover letter for a job application based on the provided job
+                posting and resume. You will be given a job posting and a resume, and
+                you need to create a tailored cover letter that highlights the
+                candidate's qualifications and suitability for the position.
+            """
+        ),
+    )
 
-        {posting_text}
+    messages.append(
+        dict(
+            role="developer",
+            content=f"""
+                This is the job posting. It is html scraped from a job board. It
+                contains a lot of html markup, but you should ignore that and focus on
+                the text content.
 
-        You should use the following resume as a reference. It is a markdown document.
+                {posting_text}
+            """,
+        ),
+    )
 
-        {resume_text}
-    """
+    messages.append(
+        dict(
+            role="developer",
+            content=f"""
+                Use this resume as you write the letter. It highlights the skills and
+                experience of the candidate.
+
+                {resume_text}
+            """,
+        ),
+    )
+
     if example_text:
-        prompt += f"""
-            You should use this cover letter as reference for what I would like the
-            resulting cover letter to look like. It is a markdown document.
+        messages.append(
+            dict(
+                role="developer",
+                content=f"""
+                    You should use this cover letter as reference for what I would like the
+                    resulting cover letter to look like. It is a markdown document.
 
-            {example_text}
-        """
+                    {example_text}
+                """,
+            ),
+        )
 
-    prompt += f"""
-        The cover letter should not sound like it was written by a machine. It should
-        be direct, personal, and energetic. It should be professional, but informal
-        in an almost daring way.
+    messages.append(
+        dict(
+            role="developer",
+            content=f"""
+                The cover letter should not sound like it was written by a machine. It
+                should be direct, personal, and energetic. It should be professional,
+                but informal in an almost daring way.
 
-        Avoid sentences of the form, "With X, I will Y". Do not use any of the following
-        words:
+                Avoid sentences of the form, "With X, I will Y". Do not use any of the
+                following words:
 
-        - challenge
-        - opportunity
-        - leverage
-        - passionate
+                - challenge
+                - opportunity
+                - leverage
+                - passionate
 
-        The letter should highlight my leadership, my technical excellence, and my
-        ambition.
+                The letter should highlight the candidate's leadership, technical
+                excellence, and ambition.
 
-        Use the salutation, "To the Hiring Team at <company name>", where <company name>
-        is the name of the company found in the job posting.
+                Use the salutation, "To the Hiring Team at <company name>", where
+                <company name> is the name of the company found in the job posting.
 
-        Use the following markdown for the closing exactly as it appears:
+                Use the following markdown for the closing exactly as it appears:
 
-            Best regards,
+                    Best regards,
 
-            ![signature](file://{Path("etc/sig.png").absolute()})
+                    ![signature](file://{Path("etc/sig.png").absolute()})
 
-            Tucker Beck
+                    Tucker Beck
 
-        The final letter should be in markdown format. Do not include any other text.
-        Just print the letter itself.
+                The final letter should be in markdown format. Do not include any other
+                text. Just print the letter itself.
 
-        Again, do not provide any friendly text before the letter. Do not explain what
-        you are doing. Do not say "Here is your letter". Just print the damn letter.
+                Again, do not provide any friendly text before the letter. Do not
+                explain what you are doing. Do not say "Here is your letter". Just print
+                the damn letter.
 
-        Use this for the markdown heading exactly as it is:
+                Use this for the markdown heading exactly as it is:
 
-            # Tucker Beck
+                    # Tucker Beck
 
-            📍 [Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9) /
-            📧 [Tucker.beck@gmail.com](tucker.beck@gmail.com) /
-            🛠 [dusktreader@github](https://github.com/dusktreader)
+                    📍 [Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9) /
+                    📧 [Tucker.beck@gmail.com](tucker.beck@gmail.com) /
+                    🛠 [dusktreader@github](https://github.com/dusktreader)
 
-            ---
-    """
+                    ---
+            """,
+        )
+    )
 
-    messages=[
-        dict(role="developer", content=prompt),
-        dict(role="user", content="Please write me a nice letter!"),
-    ]
+    messages.append(dict(role="user", content="Please write me a nice letter!"))
 
     if reprompts is not None:
         for (old_letter, user_feedback) in reprompts:
