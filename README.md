@@ -1,8 +1,8 @@
 # Tucker Beck
 
-📍 [Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9)
-📧 [Tucker.beck@gmail.com](tucker.beck@gmail.com)
-🛠 [dusktreader@github](https://github.com/dusktreader)
+[📍 Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9)
+[📧 tucker.beck@gmail.com](tucker.beck@gmail.com)
+[🛠 dusktreader@github](https://github.com/dusktreader)
 
 I'm an Engineering Leader focused on assembling powerhouse dev teams that consistently
 deliver high-impact software solutions. I lead with a fusion of empathy and resolve;

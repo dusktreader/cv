@@ -2,6 +2,7 @@ import typer
 
 from app.version import show_version
 from app.logging import init_logs
+from app.resume import cli as resume_cli
 
 
 cli = typer.Typer(rich_markup_mode="rich")
@@ -22,6 +23,9 @@ def main(
         ctx.exit()
 
     init_logs(verbose=verbose)
+
+
+cli.add_typer(resume_cli, name="resume")
 
 
 if __name__ == "__main__":

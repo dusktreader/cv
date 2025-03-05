@@ -7,7 +7,8 @@ from auto_name_enum import AutoNameEnum, auto
 from markdown import markdown
 from weasyprint import HTML
 
-from app.main import cli
+
+cli = typer.Typer()
 
 
 class ColorScheme(AutoNameEnum):
@@ -17,7 +18,7 @@ class ColorScheme(AutoNameEnum):
 
 
 @cli.command()
-def resume(
+def build(
     color: Annotated[ColorScheme, typer.Option(help="Render with color scheme.")] = ColorScheme.light,
     prefix: Annotated[str, typer.Option(help="The prefix for generated filenames.")] = "tucker-beck-cv",
     dump_html: Annotated[bool, typer.Option(help="Dump HTML file.")] = False,
@@ -34,7 +35,7 @@ def resume(
         html_path = Path(f"{name}.html")
         html_path.write_text(html_content)
 
-    css_paths = [Path("etc/css/resume/styles.css"), Path(f"etc/css/resume/{color}.css")]
+    css_paths = [Path("etc/css/styles.css"), Path(f"etc/css/{color}.css")]
     html = HTML(string=html_content)
     html.write_pdf(pdf_path, stylesheets=css_paths)
 
@@ -89,12 +90,11 @@ def injectDivs(html: str) -> str:
     contacts_element = header_div.getElementsByTagName("p")[0]
     _move_nodes_in_place(contacts_element, contacts_element.nextSibling, contacts_div)
 
-    # summary_div = dom.createElement("div")
-    # contacts_div.setAttribute("class", "contacts")
-    # title_element = header_div.getElementsByTagName("h1")[0]
-    # header_div.insertBefore(contacts_div, title_element.nextSibling)
-    # contacts_element = header_div.getElementsByTagName("p")[0]
-    # _move_nodes_in_place(contacts_element, contacts_element.nextSibling, contacts_div)
+    summary_div = dom.createElement("div")
+    summary_div.setAttribute("class", "summary")
+    summary_element = header_div.getElementsByTagName("p")[1]
+    header_div.insertBefore(summary_div, summary_element)
+    _move_nodes_in_place(summary_element, summary_element.nextSibling, summary_div)
 
     bottom_div = dom.createElement("div")
     bottom_div.setAttribute("class", "bottom")
