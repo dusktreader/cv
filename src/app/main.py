@@ -3,6 +3,7 @@ import typer
 from app.version import show_version
 from app.logging import init_logs
 from app.resume import cli as resume_cli
+from app.watch import cli as watch_cli
 
 
 cli = typer.Typer(rich_markup_mode="rich")
@@ -26,6 +27,7 @@ def main(
 
 
 cli.add_typer(resume_cli, name="resume")
+cli.add_typer(watch_cli, name="watch")
 
 
 if __name__ == "__main__":

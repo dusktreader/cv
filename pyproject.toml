@@ -8,6 +8,7 @@ dependencies = [
     "auto-name-enum>=2.0.0",
     "httpx>=0.28.1",
     "inflection>=0.5.1",
+    "livereload>=2.7.1",
     "loguru>=0.7.3",
     "markdown>=3.7",
     "openai>=1.65.1",
