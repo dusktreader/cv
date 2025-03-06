@@ -72,7 +72,6 @@ body {
 .header {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding-bottom: 0.5em;
   padding-left: 0.5em;
   padding-right: 0.5em;
@@ -82,9 +81,24 @@ body {
 
 .header h1 {
   font-family: FiraSansBold;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   margin-bottom: 0.1em;
   font-size: 1.5em;
   color: var(--header-title-color);
+}
+
+.contacts {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  font-size:  0.75em;
+}
+
+.contacts ul {
+  list-style-type: none;
+  display: inline-block;
 }
 
 .header p {
@@ -95,6 +109,12 @@ body {
 
 .header a {
   color: var(--header-link-color);
+}
+
+.header a:not(:last-child) {
+  padding-right: 0.75em;
+  margin-right: 0.75em;
+  border-right: 1px solid;
 }
 
 

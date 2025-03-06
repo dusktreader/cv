@@ -13,6 +13,9 @@ bold:  ## Generate the bold version of my cv
 
 all: light night bold  ## Generate all versions of my cv
 
+watch:  ## Watch for file changes and automatically generate and reload the cv
+	@uv run cv watch file
+
 clean:  ## Clean up build artifacts and other junk
 	@uv run pyclean . --debris
 	@rm -f *.html

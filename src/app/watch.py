@@ -1,17 +1,48 @@
+import base64
 from pathlib import Path
 from typing import Annotated
 
 import typer
-from livereload import Server, shell
+from livereload import Server
+from loguru import logger
+
+from app.resume import ColorScheme, build_pdf, __file__ as resume_module_file
 
 
 cli = typer.Typer()
 
 
-@cli.command()
-def file(
-    filename: Annotated[Path, typer.Option(help="The filename to watch.")] = Path("tucker-beck-cv--light.pdf"),
+@cli.callback(invoke_without_command=True)
+def pdf(
+    dump_html: Annotated[bool, typer.Option(help="Dump HTML file.")] = False,
 ):
+    def _build():
+        pdf_path = build_pdf(ColorScheme.light, "tucker-beck-cv", dump_html)
+        encoded = base64.b64encode(pdf_path.read_bytes()).decode('utf-8')
+        Path(".watch.html").write_text(
+            f"""
+                <html>
+                    <head>
+                    </head>
+                    <body>
+                        <embed src="data:application/pdf;base64,{encoded}"
+                               type="application/pdf"
+                               width="100%"
+                               height="1000"
+                        >
+                    </body>
+                </html>
+            """
+        )
+
+    _build()
     server = Server()
-    server.watch("README.md", shell("make light"))
-    server.serve(default_filename=str(filename))
+    logger.debug(f"Adding README.md to watchers")
+    server.watch("README.md", func=_build)
+    for etc_path in Path("etc/css").glob("*.css"):
+        logger.debug(f"Adding {etc_path} to watchers")
+        server.watch(str(etc_path), func=_build)
+    logger.debug(f"Adding {resume_module_file} to watchers")
+    server.watch(resume_module_file, func=_build)
+
+    server.serve(default_filename=".watch.html", open_url_delay=0.25, live_css=False)

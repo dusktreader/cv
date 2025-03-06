@@ -4,6 +4,7 @@ from xml.dom.minidom import parseString, Node
 
 import typer
 from auto_name_enum import AutoNameEnum, auto
+from loguru import logger
 from markdown import markdown
 from weasyprint import HTML
 
@@ -23,6 +24,10 @@ def build(
     prefix: Annotated[str, typer.Option(help="The prefix for generated filenames.")] = "tucker-beck-cv",
     dump_html: Annotated[bool, typer.Option(help="Dump HTML file.")] = False,
 ):
+    build_pdf(color, prefix, dump_html)
+
+
+def build_pdf(color: ColorScheme, prefix: str, dump_html: bool) -> Path:
     md_path = Path("README.md")
 
     name = f"{prefix}--{color}"
@@ -33,11 +38,13 @@ def build(
 
     if dump_html:
         html_path = Path(f"{name}.html")
+        logger.debug(f"Dumping HTML file to {html_path}")
         html_path.write_text(html_content)
 
     css_paths = [Path("etc/css/styles.css"), Path(f"etc/css/{color}.css")]
     html = HTML(string=html_content)
     html.write_pdf(pdf_path, stylesheets=css_paths)
+    return pdf_path
 
 
 def _move_nodes_in_place(
@@ -87,12 +94,12 @@ def injectDivs(html: str) -> str:
     contacts_div.setAttribute("class", "contacts")
     title_element = header_div.getElementsByTagName("h1")[0]
     header_div.insertBefore(contacts_div, title_element.nextSibling)
-    contacts_element = header_div.getElementsByTagName("p")[0]
+    contacts_element = header_div.getElementsByTagName("ul")[0]
     _move_nodes_in_place(contacts_element, contacts_element.nextSibling, contacts_div)
 
     summary_div = dom.createElement("div")
     summary_div.setAttribute("class", "summary")
-    summary_element = header_div.getElementsByTagName("p")[1]
+    summary_element = header_div.getElementsByTagName("p")[0]
     header_div.insertBefore(summary_div, summary_element)
     _move_nodes_in_place(summary_element, summary_element.nextSibling, summary_div)
 
