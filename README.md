@@ -1,8 +1,8 @@
 # Tucker Beck
 
-📍 [Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9)
-📧 [Tucker.beck@gmail.com](tucker.beck@gmail.com)
-🛠 [dusktreader@github](https://github.com/dusktreader)
+* 📍 [Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9)
+* 📧 [tucker.beck@gmail.com](tucker.beck@gmail.com)
+* 🛠 [dusktreader@github](https://github.com/dusktreader)
 
 I'm an Engineering Leader focused on assembling powerhouse dev teams that consistently
 deliver high-impact software solutions. I lead with a fusion of empathy and resolve;
@@ -23,6 +23,15 @@ teams where partnership, expertise, and tenacity are at the core of everything w
 ## Certs
 
 * **[CKAD](https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/ffc1c3da-f2eb-4056-ad55-2030dde6eb86-tucker-beck-4c813b35-c62b-4ba4-aa4f-39e8bf55a42f-certificate.pdf)**: 2024
+
+
+## Projects
+
+* **[armasec](https://github.com/omnivector-solutions/armasec)**:  OIDC Security for FastAPI
+* **[flask-praetorian](https://github.com/dusktreader/flask-praetorian)**:  Strong, simple Flask security
+* **[py-buzz](https://github.com/dusktreader/py-buzz)**:  Exception toolkit for Python
+* **[smart-letters](https://github.com/dusktreader/smart-letters)**:  AI assisted cover letter composition
+* **[jobbergate](https://github.com/omnivector-solutions/jobbergate)**:  Slurm remote job control framework
 
 
 ## Experience

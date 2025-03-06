@@ -1,9 +1,12 @@
 .ONESHELL:
-.DEFAULT_GOAL:=help
+.DEFAULT_GOAL:=light
 SHELL:=/bin/bash
 
 light:  ## Generate the light version of my cv
-	uv run cv resume --color=light
+	uv run cv resume
+
+blue:  ## Generate the light version of my cv
+	uv run cv resume --color=blue
 
 night:  ## Generate the night version of my cv
 	uv run cv resume --color=night
@@ -11,7 +14,10 @@ night:  ## Generate the night version of my cv
 bold:  ## Generate the bold version of my cv
 	uv run cv resume --color=bold
 
-all: light night bold  ## Generate all versions of my cv
+all: light night bold blue  ## Generate all versions of my cv
+
+watch:  ## Watch for file changes and automatically generate and reload the cv
+	@uv run cv watch
 
 clean:  ## Clean up build artifacts and other junk
 	@uv run pyclean . --debris

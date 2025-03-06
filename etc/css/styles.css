@@ -70,6 +70,8 @@ body {
 /* Header styles */
 
 .header {
+  display: flex;
+  flex-direction: column;
   padding-bottom: 0.5em;
   padding-left: 0.5em;
   padding-right: 0.5em;
@@ -79,9 +81,36 @@ body {
 
 .header h1 {
   font-family: FiraSansBold;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   margin-bottom: 0.1em;
-  font-size: 1.5em;
+  font-size: 1.75em;
   color: var(--header-title-color);
+}
+
+.contacts {
+  list-style-type: none;
+  display: flex;
+  width: 100%;
+  font-size:  0.75em;
+  padding-top: 0em;
+}
+
+.contacts ul {
+  justify-content: center;
+  list-style-type: none;
+  display: flex;
+  width: 100%;
+  margin-top: 0em;
+  padding-left: 0em;
+  margin-left: 0em;
+}
+
+.contacts li:not(:last-child){
+  padding-right: 0.75em;
+  margin-right: 0.75em;
+  border-right: 1px solid;
 }
 
 .header p {
@@ -95,7 +124,6 @@ body {
 }
 
 
-
 /* Sidebar styles */
 
 .sidebar {
@@ -103,7 +131,7 @@ body {
   width: 25%;
   height: 100%;
   padding-left: 0.5em;
-  padding-right: 0.25em;
+  padding-right: 1em;
   background-color: var(--sidebar-background-color);
 }
 
@@ -129,7 +157,7 @@ body {
 }
 
 .sidebar ul+h2 {
-  margin-top: 1.0em;
+  margin-top: 2.0em;
 }
 
 .sidebar a {
