@@ -1,4 +1,4 @@
-name: build-pdfs
+name: build-page
 on:
   push:
     tags:
@@ -29,7 +29,7 @@ jobs:
         cp -r fonts _site/
 
     - name: Upload Site Artifacts
-      uses: actions/upload-pages-atrifact@v3
+      uses: actions/upload-pages-artifact@v3
       with:
         path: _site
 
