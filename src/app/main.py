@@ -2,7 +2,7 @@ import typer
 
 from app.version import show_version
 from app.logging import init_logs
-from app.resume import cli as resume_cli
+from app.build import cli as build_cli
 from app.watch import cli as watch_cli
 
 
@@ -26,7 +26,7 @@ def main(
     init_logs(verbose=verbose)
 
 
-cli.add_typer(resume_cli, name="resume")
+cli.add_typer(build_cli, name="build")
 cli.add_typer(watch_cli, name="watch")
 
 

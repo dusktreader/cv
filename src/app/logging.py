@@ -14,8 +14,7 @@ def init_logs(verbose=False):
     logger.debug("Logging initialized")
 
 
-def hijack_weasyprint():
-    logging.basicConfig(handlers=[InterceptHandler()], level=0)
+#logging.basicConfig(handlers=[InterceptHandler()], level=0)
 
 
 class InterceptHandler(logging.Handler):

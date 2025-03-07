@@ -3,16 +3,16 @@
 SHELL:=/bin/bash
 
 light:  ## Generate the light version of my cv
-	uv run cv resume
+	uv run cv build
 
 blue:  ## Generate the light version of my cv
-	uv run cv resume --color=blue
+	uv run cv build --color=blue
 
 night:  ## Generate the night version of my cv
-	uv run cv resume --color=night
+	uv run cv build --color=night
 
 bold:  ## Generate the bold version of my cv
-	uv run cv resume --color=bold
+	uv run cv build --color=bold
 
 all: light night bold blue  ## Generate all versions of my cv
 

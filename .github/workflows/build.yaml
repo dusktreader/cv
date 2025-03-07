@@ -1,9 +1,14 @@
-name: build-pdfs
+name: build-page
 on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
       - 'v[0-9]+.[0-9]+.[0-9]+-rc[0-9]+'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -24,14 +29,21 @@ jobs:
       run:  |
         mkdir _site
         mv index.html _site
-        cp -r css _site/
-        cp -r images _site/
-        cp -r fonts _site/
+        cp -r static _site/
 
     - name: Upload Site Artifacts
-      uses: actions/upload-pages-atrifact@v3
+      id: deployment
+      uses: actions/upload-pages-artifact@v3
       with:
         path: _site
 
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
     - name: Deploy to GitHub Pages
+      id: deployment
       uses: actions/deploy-pages@v4
