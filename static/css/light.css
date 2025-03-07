@@ -56,6 +56,10 @@
   --sidebar-text-color: var(--light-gray-6);
   --sidebar-link-color: var(--light-red-4);
   --sidebar-background-color: var(--light-gray-1);
+  --sidebar-button-color: var(--light-gray-6);
+  --sidebar-button-hover-color: var(--light-gray-7);
+  --sidebar-button-clicked-color: var(--light-blue-5);
+  --sidebar-button-text-color: var(--light-red-2);
 
   --main-title-color: var(--light-blue-5);
   --main-heading-color: var(--light-red-6);

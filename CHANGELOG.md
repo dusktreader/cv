@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v5.1.0 - 2025-03-07
+* More work on the build and watch script
+* A little more styling
+* Added a print/download button
+* Working on deploy action
+
 ## v5.0.0 - 2025-03-06
 * Converted to just building an HTML page (will figure out pdf later)
 * Added github action to deploy page

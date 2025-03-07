@@ -1,6 +1,8 @@
+from logging import debug
 from pathlib import Path
 from typing import Annotated
 from xml.dom.minidom import Document, Element, parseString, Node
+from xml.dom.xmlbuilder import DOMBuilder
 
 import typer
 from buzz import require_condition
@@ -24,8 +26,8 @@ def get_html_path() -> Path:
     return Path("index.html")
 
 
-def build_page(color: ColorScheme) -> Path:
-    logger.debug(f"Building PDF using scheme {color}")
+def build_page(color: ColorScheme, debug: bool = False) -> Path:
+    logger.debug(f"Building page using scheme {color}")
     md_path = Path("README.md")
 
     html_content = markdown(md_path.read_text())
@@ -33,6 +35,9 @@ def build_page(color: ColorScheme) -> Path:
     html_content = inject_divs(html_content)
     html_content = inject_photo(html_content)
     html_content = tag_emojis(html_content)
+    html_content = add_download_button(html_content)
+    if debug:
+        html_content = inject_live_script(html_content)
 
     html_path = get_html_path()
     logger.debug(f"Writing HTML file to {html_path}")
@@ -59,10 +64,13 @@ def _pretty_html(dom: Document) -> str:
     return "\n".join([l for l in dom.toprettyxml(indent="  ").split("\n") if l.strip()])
 
 
-def find_element(parent: Document | Element, tag_name: str, class_name: str) -> Node:
+def find_element(parent: Document | Element, tag_name: str, class_name: str | None = None) -> Node:
     elements = []
     for node in parent.getElementsByTagName(tag_name):
-        if node.getAttribute("class") == class_name:
+        if class_name:
+            if node.getAttribute("class") == class_name:
+                elements.append(node)
+        else:
             elements.append(node)
     require_condition(
         len(elements) == 1,
@@ -77,10 +85,10 @@ def fill_html(html: str, color: ColorScheme) -> str:
     html = f"""
         <html>
             <head>
-                <meta charset="UTF-8" />
+                <meta charset="utf-8" />
                 <title>Tucker Beck Resumé</title>
-                <link rel="stylesheet" href="css/styles.css" />
-                <link rel="stylesheet" href="css/{color}.css" />
+                <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
+                <link rel="stylesheet" type="text/css" href="static/css/{color}.css" />
             </head>
             <body>
                 {html}
@@ -94,13 +102,13 @@ def fill_html(html: str, color: ColorScheme) -> str:
 def inject_photo(html: str) -> str:
     logger.debug("Injecting photo into HTML")
     dom = parseString(html)
-    header_div = find_element(dom, "div", "header")
+    header_div = find_element(dom, "div", class_name="header")
 
     header_photo_div = dom.createElement("div")
     header_photo_div.setAttribute("class", "header-photo")
     header_div.insertBefore(header_photo_div, header_div.firstChild)
     header_photo_img = dom.createElement("img")
-    header_photo_img.setAttribute("src", "images/me.png")
+    header_photo_img.setAttribute("src", "static/images/me.png")
     header_photo_img.setAttribute("alt", "Tucker Beck Photo")
     header_photo_div.appendChild(header_photo_img)
 
@@ -170,7 +178,7 @@ def tag_emojis(html: str) -> str:
 
     dom = parseString(html)
 
-    contact_list_div = find_element(dom, "div", "contact_list")
+    contact_list_div = find_element(dom, "div", class_name="contact_list")
     li_elements = contact_list_div.getElementsByTagName("li")
     for li in li_elements:
         text_node = li.firstChild
@@ -184,5 +192,42 @@ def tag_emojis(html: str) -> str:
         contact_div.setAttribute("class", "contact")
         li.insertBefore(contact_div, li.firstChild)
         _move_nodes_in_place(contact_div.nextSibling, li.childNodes[-1], contact_div)
+
+    return _pretty_html(dom)
+
+
+def add_download_button(html: str) -> str:
+    logger.debug("Adding download/print button")
+
+    dom = parseString(html)
+
+    sidebar_div = find_element(dom, "div", class_name="sidebar")
+
+    text = dom.createTextNode("Print (Download PDF)")
+
+    span = dom.createElement("span")
+    span.setAttribute("id", "button-span")
+    span.appendChild(text)
+
+    button = dom.createElement("button")
+    button.setAttribute("id", "download-button")
+    button.setAttribute("onClick", "window.print()")
+    button.setAttribute("class", "no-print")
+    button.appendChild(span)
+    sidebar_div.appendChild(button)
+
+    return _pretty_html(dom)
+
+
+def inject_live_script(html: str) -> str:
+    logger.debug("Adding live reload script")
+
+    dom = parseString(html)
+
+    head = find_element(dom, "head")
+    meta = dom.createElement("meta")
+    meta.setAttribute("http-equiv", "refresh")
+    meta.setAttribute("content", "3")
+    head.appendChild(meta)
 
     return _pretty_html(dom)
