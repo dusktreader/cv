@@ -1,11 +1,11 @@
 from pathlib import Path
 from typing import Annotated
-from xml.dom.minidom import parseString, Node
+from xml.dom.minidom import Document, Element, parseString, Node
 
 import typer
+from buzz import require_condition
 from loguru import logger
 from markdown import markdown
-from weasyprint import HTML
 
 from app.constants import ColorScheme
 
@@ -16,34 +16,29 @@ cli = typer.Typer()
 @cli.callback(invoke_without_command=True)
 def build(
     color: Annotated[ColorScheme, typer.Option(help="Render with color scheme.")] = ColorScheme.light,
-    prefix: Annotated[str, typer.Option(help="The prefix for generated filenames.")] = "tucker-beck-cv",
-    dump_html: Annotated[bool, typer.Option(help="Dump HTML file.")] = False,
 ):
-    build_pdf(color, prefix, dump_html)
+    build_page(color)
 
 
-def build_pdf(color: ColorScheme, prefix: str, dump_html: bool) -> Path:
+def get_html_path() -> Path:
+    return Path("index.html")
+
+
+def build_page(color: ColorScheme) -> Path:
     logger.debug(f"Building PDF using scheme {color}")
     md_path = Path("README.md")
 
-    name = f"{prefix}--{color}"
-
     html_content = markdown(md_path.read_text())
-    html_content = injectDivs(html_content)
+    html_content = fill_html(html_content, color)
+    html_content = inject_divs(html_content)
+    html_content = inject_photo(html_content)
+    html_content = tag_emojis(html_content)
 
-    if dump_html:
-        html_path = Path(f"{name}.html")
-        logger.debug(f"Dumping HTML file to {html_path}")
-        html_path.write_text(html_content)
+    html_path = get_html_path()
+    logger.debug(f"Writing HTML file to {html_path}")
+    html_path.write_text(html_content)
 
-    css_paths = [Path("etc/css/styles.css"), Path(f"etc/css/{color}.css")]
-    html = HTML(string=html_content)
-
-    pdf_path = Path(f"{name}.pdf")
-    logger.debug(f"Saving PDF to {pdf_path}")
-    html.write_pdf(pdf_path, stylesheets=css_paths)
-
-    return pdf_path
+    return html_path
 
 
 def _move_nodes_in_place(
@@ -60,19 +55,66 @@ def _move_nodes_in_place(
         target_node.appendChild(node)
 
 
-def injectDivs(html: str) -> str:
-    logger.debug("Injecting divs into HTML")
-    doc = f"""
+def _pretty_html(dom: Document) -> str:
+    return "\n".join([l for l in dom.toprettyxml(indent="  ").split("\n") if l.strip()])
+
+
+def find_element(parent: Document | Element, tag_name: str, class_name: str) -> Node:
+    elements = []
+    for node in parent.getElementsByTagName(tag_name):
+        if node.getAttribute("class") == class_name:
+            elements.append(node)
+    require_condition(
+        len(elements) == 1,
+        f"Expected 1 element, found{len(elements)}",
+        raise_exc_class=RuntimeError
+    )
+    return elements[0]
+
+
+def fill_html(html: str, color: ColorScheme) -> str:
+    logger.debug("Filling out HTML")
+    html = f"""
         <html>
             <head>
+                <meta charset="UTF-8" />
                 <title>Tucker Beck Resumé</title>
+                <link rel="stylesheet" href="css/styles.css" />
+                <link rel="stylesheet" href="css/{color}.css" />
             </head>
             <body>
                 {html}
             </body>
         </html>
     """
-    dom = parseString(doc)
+    dom = parseString(html)
+    return _pretty_html(dom)
+
+
+def inject_photo(html: str) -> str:
+    logger.debug("Injecting photo into HTML")
+    dom = parseString(html)
+    header_div = find_element(dom, "div", "header")
+
+    header_photo_div = dom.createElement("div")
+    header_photo_div.setAttribute("class", "header-photo")
+    header_div.insertBefore(header_photo_div, header_div.firstChild)
+    header_photo_img = dom.createElement("img")
+    header_photo_img.setAttribute("src", "images/me.png")
+    header_photo_img.setAttribute("alt", "Tucker Beck Photo")
+    header_photo_div.appendChild(header_photo_img)
+
+    header_info_div = dom.createElement("div")
+    header_info_div.setAttribute("class", "header-info")
+    header_div.insertBefore(header_info_div, header_photo_div.nextSibling)
+    _move_nodes_in_place(header_info_div.nextSibling, header_div.childNodes[-1], header_info_div)
+
+    return _pretty_html(dom)
+
+
+def inject_divs(html: str) -> str:
+    logger.debug("Injecting divs into HTML")
+    dom = parseString(html)
 
     body = dom.getElementsByTagName("body")[0]
 
@@ -90,12 +132,12 @@ def injectDivs(html: str) -> str:
     sidebar_start = next(e for e in h2_elements if e.firstChild.data == "Skills")
     _move_nodes_in_place(header_div.nextSibling, sidebar_start, header_div)
 
-    contacts_div = dom.createElement("div")
-    contacts_div.setAttribute("class", "contacts")
+    contact_list_div = dom.createElement("div")
+    contact_list_div.setAttribute("class", "contact_list")
     title_element = header_div.getElementsByTagName("h1")[0]
-    header_div.insertBefore(contacts_div, title_element.nextSibling)
-    contacts_element = header_div.getElementsByTagName("ul")[0]
-    _move_nodes_in_place(contacts_element, contacts_element.nextSibling, contacts_div)
+    header_div.insertBefore(contact_list_div, title_element.nextSibling)
+    contact_list_element = header_div.getElementsByTagName("ul")[0]
+    _move_nodes_in_place(contact_list_element, contact_list_element.nextSibling, contact_list_div)
 
     summary_div = dom.createElement("div")
     summary_div.setAttribute("class", "summary")
@@ -120,4 +162,27 @@ def injectDivs(html: str) -> str:
     bottom_div.insertBefore(main_div, sidebar_div.nextSibling)
     _move_nodes_in_place(main_start, None, main_div)
 
-    return dom.toprettyxml(indent="  ")
+    return _pretty_html(dom)
+
+
+def tag_emojis(html: str) -> str:
+    logger.debug("Marking emojis")
+
+    dom = parseString(html)
+
+    contact_list_div = find_element(dom, "div", "contact_list")
+    li_elements = contact_list_div.getElementsByTagName("li")
+    for li in li_elements:
+        text_node = li.firstChild
+        text_node.replaceWholeText(text_node.data.strip())
+        p = dom.createElement("p")
+        p.setAttribute("class", "emoji")
+        li.insertBefore(p, text_node)
+        _move_nodes_in_place(text_node, text_node.nextSibling, p)
+
+        contact_div = dom.createElement("div")
+        contact_div.setAttribute("class", "contact")
+        li.insertBefore(contact_div, li.firstChild)
+        _move_nodes_in_place(contact_div.nextSibling, li.childNodes[-1], contact_div)
+
+    return _pretty_html(dom)

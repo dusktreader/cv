@@ -2,7 +2,7 @@
 
 ### [Omnivector Solutions](https://omnivector.ai/): Engineering Manager
 
-#### 2021 - 2025: Engineering Process Improvements and Team Management
+#### July 2021 - February 2025: Engineering Process Improvements and Team Management
 
 * Developed complete Engineering Development process including comprehensive workflow
   diagrams and extensive documentation of the entire engineering lifecycle.
@@ -18,7 +18,7 @@
   improvement goals.
 
 
-#### 2021 - 2025: Vantage HPC Platform
+#### July 2021 - February 2025: Vantage HPC Platform
 
 * Directed development of the [Vantage](https://vantagehpc.io) HPC SAAS platform from
   ideation through public-facing deployment in production environments.
@@ -41,7 +41,7 @@
 
 ### [Office Ally](https://cms.officeally.com/): Web Development Team Lead
 
-#### 2020 - 2021: Genomics Project & Transition to Team Lead
+#### February 2020 - July 2021: Genomics Project & Transition to Team Lead
 
 * Piloted effort to integrate lab reports and processing statuses from genomic testing
   venture project into [Patient Ally](https://www.patientally.com).
@@ -58,7 +58,7 @@
   mandated by high-level stakeholders and delivered results while maximizing engagement.
 
 
-#### 2019 - 2020: [Patient Ally](https://www.patientally.com) Frontend Rewrite
+#### March 2019 - February 2020: [Patient Ally](https://www.patientally.com) Frontend Rewrite
 
 * Lead effort to rewrite legacy frontend application from Django to Angular 11 using
   modern best practices and reactive user experience
@@ -74,7 +74,7 @@
 
 ### [Comscore](https://www.comscore.com): Senior Software Engineer
 
-#### 2016 - 2019: Cross-platform record linkage / entity resolution for large metadata store
+#### January 2016 - March 2019: Cross-platform record linkage / entity resolution for large metadata store
 
 * Spearheaded and lead development of mission critical internal system for record
   linkage and entity resolution (deduplicating and disambiguating metadata) from
@@ -91,7 +91,7 @@
   access by external services.
 
 
-#### 2012 - 2016: Refactor legacy [record linkage](https://en.wikipedia.org/wiki/Record_linkage) systems
+#### November 2012 - January 2016: Refactor legacy [record linkage](https://en.wikipedia.org/wiki/Record_linkage) systems
 
 * Launched efforts to consolidate several mechanisms of “title matching” (human curated
   record linkage driven by algorithmic heuristics) for the On Demand Essentials product.
@@ -106,7 +106,7 @@
 
 ### [Batelle Inc.](https://www.battelle.org): Applied Parallel Computing Scientist II
 
-#### 2011 - 2012: Modernize open-source biomolecular research application
+#### May 2011 - November 2012: Modernize open-source biomolecular research application
 
 * Anchored modernization team for
   [open-source biomolecular software project](https://github.com/Electrostatics/apbs)
@@ -119,7 +119,7 @@
   build system while reducing overhead and improving maintainability of build scripts.
 
 
-#### 2010 - 2011:  Human tracking in gigapixel video streams of high-traffic environments
+#### April 2010 - May 2011:  Human tracking in gigapixel video streams of high-traffic environments
 
 * Collaborated with premier university research team specializing in computer vision.
 * Converged with two off-team developers to transition exploratory research code written
@@ -130,7 +130,7 @@
   inter-process communication.
 
 
-#### 2008 - 2010:  Detection and classification of objects in gigapixel images
+#### July 2008 - April 2010:  Detection and classification of objects in gigapixel images
 
 * Researched and developed object detectors that hunted for ~2500 pixel objects in ~10
   gigapixel images utilizing [OpenMP](https://www.openmp.org) to locally optimize searches.
@@ -147,7 +147,7 @@
 
 ## Education
 
-### 2004 - 2008: [Washington State University](https://wsu.edu): Computer Science B.S.
+### September 2004 - May 2008: [Washington State University](https://wsu.edu): Computer Science B.S.
 
 * Graduated Cum Laude
 * Focused on Scientific Computing, Machine Learning, and Parallel Computing

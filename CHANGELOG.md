@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v5.0.0 - 2025-03-06
+* Converted to just building an HTML page (will figure out pdf later)
+* Added github action to deploy page
+
 ## v4.0.0 - 2025-03-05
 * Added new "Projects" section to resume (in sidebar)
 * Centered header and improved contacts formatting

@@ -50,19 +50,19 @@
   --header-title-color: var(--light-red-6);
   --header-text-color: var(--light-blue-6);
   --header-link-color: var(--light-red-4);
-  --header-background-color: none;
+  --header-background-color: white;
 
   --sidebar-heading-color: var(--light-gray-5);
   --sidebar-text-color: var(--light-gray-6);
   --sidebar-link-color: var(--light-red-4);
-  --sidebar-background-color: var(--light-gray-2);
+  --sidebar-background-color: var(--light-gray-1);
 
   --main-title-color: var(--light-blue-5);
   --main-heading-color: var(--light-red-6);
   --main-subheading-color: var(--light-blue-6);
   --main-text-color: var(--light-blue-6);
   --main-link-color: var(--light-red-4);
-  --main-background-color: var(--light-gray-1);
+  --main-background-color: none;
 
   --body-foreground-color: none;
   --body-background-color: none;

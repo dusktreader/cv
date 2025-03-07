@@ -1,6 +1,7 @@
 # Tucker Beck
 
 * 📍 [Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9)
+* 📞 [+1-509-713-2325](tel:+15097132325)
 * 📧 [tucker.beck@gmail.com](tucker.beck@gmail.com)
 * 🛠 [dusktreader@github](https://github.com/dusktreader)
 
@@ -36,12 +37,12 @@ teams where partnership, expertise, and tenacity are at the core of everything w
 
 ## Experience
 
-### 2021 - 2025: [Omnivector Solutions](https://omnivector.ai/)
+### July 2021 - February 2025: [Omnivector Solutions](https://omnivector.ai/)
 #### Engineering Manager
 
 - Improved efficiency by developing and documenting comprehensive engineering processes
   and successfully migrating project management to [ClickUp](https://clickup.com).
-- Enhanced team productivity and streamlined development workflows by establishing
+- Increased team accountability and streamlined development workflows by establishing
   [SCRUM](https://scrum.org)-based methodology and measuring efficiency improvements.
 - Directed the development of the [Vantage](https://vantagecompute.ai) HPC SAAS platform
   from ideation through public release.
@@ -53,7 +54,7 @@ teams where partnership, expertise, and tenacity are at the core of everything w
   enable security for Python APIs backed by OIDC providers including Auth0 and Keycloak.
 
 
-### 2019 - 2021: [Office Ally](https://cms.officeally.com/)
+### March 2019 - July 2021: [Office Ally](https://cms.officeally.com/)
 #### Web Development Team Lead
 
 - Piloted the integration of lab reports and processing statuses from a genomic testing
@@ -66,10 +67,10 @@ teams where partnership, expertise, and tenacity are at the core of everything w
   performance and redirecting team on new product roadmap.
 - Re-designed Patient Ally Messaging section from scratch into a familiar email-like
   subsystem including contacts, attachments, and conversation oriented interface.
-- Led the rewrite legacy front-end app from Django to Angular, introducing modern best
-  practices, implementing reactive user experience, and mentoring junior developers.
+- Led the effort to rewrite legacy front-end from Django to Angular, introducing modern
+  best practices and reactive user experience; mentored junior developers on the team.
 
-### 2012 - 2019: [Comscore](https://www.comscore.com)
+### November 2012 - March 2019: [Comscore](https://www.comscore.com)
 #### Senior Software Engineer
 
 - Spearheaded development of mission critical internal system for record linkage and
@@ -83,7 +84,7 @@ teams where partnership, expertise, and tenacity are at the core of everything w
 - Mentored junior engineers, providing guidance on best practices and fostering a
   culture of continuous learning.
 
-### 2008 - 2012: [Batelle](https://www.battelle.org)
+### July 2008 - November 2012: [Batelle](https://www.battelle.org)
 #### Computer Scientist II
 
 - Modernized [APBS](https://github.com/Electrostatics/apbs) biomolecular research app by
@@ -99,7 +100,7 @@ teams where partnership, expertise, and tenacity are at the core of everything w
 
 ## Education
 
-### 2004 - 2008: [Washington State University](https://wsu.edu)
+### September 2004 - May 2008: [Washington State University](https://wsu.edu)
 #### Computer Science B.S.
 
 * Graduated Cum Laude

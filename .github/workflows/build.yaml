@@ -17,14 +17,21 @@ jobs:
     - name: Install python
       run:  uv python install 3.13
 
-    - name: Build PDFs
-      run:  make all
+    - name: Build Page
+      run:  make
 
-    - name: Find artifacts
-      id:   artifacts
-      run:  echo "pdfs=$(ls -1 *.pdf | tr '\n' ',' | sed 's/,$//')" | tee $GITHUB_OUTPUT
+    - name: Stage assets
+      run:  |
+        mkdir _site
+        mv index.html _site
+        cp -r css _site/
+        cp -r images _site/
+        cp -r fonts _site/
 
-    - name: Create release
-      uses: ncipollo/release-action@v1
+    - name: Upload Site Artifacts
+      uses: actions/upload-pages-atrifact@v3
       with:
-        artifacts: ${{ steps.artifacts.outputs.pdfs }}
+        path: _site
+
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4

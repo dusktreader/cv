@@ -1,18 +1,26 @@
 @font-face {
-  font-family: 'FiraSans';
+  font-family: 'normal-font';
   src: url("../fonts/FiraSans-Regular.ttf") format('truetype');
-}
+
 
 @font-face {
-  font-family: 'FiraSansBold';
+  font-family: 'bold-font';
   font-weight: 900;
   src: url("../fonts/FiraSans-Bold.ttf") format('truetype');
 }
 
 @font-face {
-  font-family: 'NotoEmoji';
-  font-style: normal;
+  font-family: 'italic-font';
+  src: url("../fonts/FiraSans-Italic.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'emoji-font';
   src: url("../fonts/NotoEmoji-Regular.ttf") format('truetype');
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a:link {
@@ -24,7 +32,7 @@ a:hover {
 }
 
 strong {
-  font-family: FiraSansBold;
+  font-family: bold-font;
 }
 
 html {
@@ -33,7 +41,7 @@ html {
 }
 
 body {
-  font-family: FiraSans, sans-serif;
+  font-family: normal-font, sans-serif;
   font-weight: normal;
   font-style: normal;
   margin: 0;
@@ -49,10 +57,9 @@ body {
   padding: 0em;
   height: 100%;
   width: 100%;
+  min-width: 65em;
   display: flex;
   flex-direction: column;
-  border-style: solid;
-  border-width: 2px;
 }
 
 .bottom {
@@ -71,51 +78,101 @@ body {
 
 .header {
   display: flex;
-  flex-direction: column;
-  padding-bottom: 0.5em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  flex-direction: row;
+  height: 9em;
+  width: 100%;
   background-color: var(--header-background-color);
+  border-bottom: 2px solid black;
 }
 
-
-.header h1 {
-  font-family: FiraSansBold;
+.header-photo {
   display: flex;
-  justify-content: center;
-  width: 100%;
+}
+
+.header-photo img {
+  display: flex;
+  margin-top: 0.5em;
+  margin-left: 1.2em;
+  margin-right: 1.2em;
+  height: 130%;
+  width: auto;
+  z-index: 20;
+  border: 0.5em solid white;
+  filter: drop-shadow(0px 0px 0.5em black);
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.header-info h1 {
+  font-family: bold-font;
+  display: flex;
+  margin-top: 0.25em;
   margin-bottom: 0.1em;
+  padding-top: 0.1em;
   font-size: 1.75em;
   color: var(--header-title-color);
 }
 
-.contacts {
+.contact_list {
   list-style-type: none;
   display: flex;
   width: 100%;
-  font-size:  0.75em;
   padding-top: 0em;
+  margin-top: 0em;
 }
 
-.contacts ul {
-  justify-content: center;
+.contact_list ul {
   list-style-type: none;
   display: flex;
   width: 100%;
   margin-top: 0em;
+  margin-bottom: 0.5em;
   padding-left: 0em;
   margin-left: 0em;
 }
 
-.contacts li:not(:last-child){
+.contact_list li:not(:last-child){
   padding-right: 0.75em;
   margin-right: 0.75em;
   border-right: 1px solid;
 }
 
-.header p {
+.contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.contact p {
+  display: flex;
+  padding-right: 0.5em;
+  font-size: 5em;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  font-size:  0.75em;
+  font-family: emoji-font;
+}
+
+.contact a {
+  display: flex;
+  align-items: center;
+  font-size:  0.75em;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  color: var(--header-link-color);
+}
+
+.summary p {
+  display: flex;
   margin-top: 0.1em;
   font-size:  0.75em;
+  font-family: italic-font;
   color: var(--header-text-color);
 }
 
@@ -127,9 +184,11 @@ body {
 /* Sidebar styles */
 
 .sidebar {
-  width: 13em;
+  display: flex;
+  flex-direction: column;
   width: 25%;
   height: 100%;
+  padding-top: 3em;
   padding-left: 0.5em;
   padding-right: 1em;
   background-color: var(--sidebar-background-color);
@@ -192,7 +251,7 @@ body {
 .main h4 {
   margin-top: 0.0em;
   margin-bottom: 0.5em;
-  font-family: FiraSansBold;
+  font-family: bold-font;
   font-size: 0.75em;
   color: var(--main-subheading-color);
 }
@@ -215,11 +274,4 @@ body {
 
 .main a {
   color: var(--main-link-color);
-}
-
-
-/* Set the emoji font */
-
-.emoji {
-  font-family: NotoEmoji;
 }
