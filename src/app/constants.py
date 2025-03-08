@@ -6,3 +6,6 @@ class ColorScheme(AutoNameEnum):
     night = auto()
     blue = auto()
     bold = auto()
+
+
+DEFAULT_COLOR = ColorScheme.light

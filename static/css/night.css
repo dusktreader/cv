@@ -72,6 +72,11 @@
   --main-link-color: var(--night-blue-3);
   --main-background-color: var(--night-gray-6);
 
+  --button-color: var(--night-red-3);
+  --button-hover-color: var(--night-red-5);
+  --button-clicked-color: var(--night-green-3);
+  --button-text-color: var(--night-blue-6);
+
   --body-foreground-color: none;
   --body-background-color: none;
 }

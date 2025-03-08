@@ -1,19 +1,13 @@
 [project]
 name = "cv"
-version = "5.1.0"
+version = "5.2.0"
 description = "Tools for building career documents."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "auto-name-enum>=2.0.0",
-    "httpx>=0.28.1",
-    "inflection>=0.5.1",
     "loguru>=0.7.3",
     "markdown>=3.7",
-    "openai>=1.65.1",
-    "py-buzz>=5.0.2",
-    "pydantic-settings>=2.8.1",
-    "snick>=1.4.1",
     "typer>=0.13.0",
     "watchfiles>=1.0.4",
 ]

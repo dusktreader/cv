@@ -1,41 +1,36 @@
-from logging import debug
 from pathlib import Path
-from typing import Annotated
 from xml.dom.minidom import Document, Element, parseString, Node
-from xml.dom.xmlbuilder import DOMBuilder
 
 import typer
-from buzz import require_condition
 from loguru import logger
 from markdown import markdown
 
-from app.constants import ColorScheme
+from app.constants import DEFAULT_COLOR, ColorScheme
 
 
 cli = typer.Typer()
 
 
 @cli.callback(invoke_without_command=True)
-def build(
-    color: Annotated[ColorScheme, typer.Option(help="Render with color scheme.")] = ColorScheme.light,
-):
-    build_page(color)
+def build():
+    build_page()
 
 
 def get_html_path() -> Path:
     return Path("index.html")
 
 
-def build_page(color: ColorScheme, debug: bool = False) -> Path:
-    logger.debug(f"Building page using scheme {color}")
+def build_page(debug: bool = False) -> Path:
+    logger.debug("Building html page")
     md_path = Path("README.md")
 
     html_content = markdown(md_path.read_text())
-    html_content = fill_html(html_content, color)
+    html_content = fill_html(html_content)
     html_content = inject_divs(html_content)
     html_content = inject_photo(html_content)
     html_content = tag_emojis(html_content)
     html_content = add_download_button(html_content)
+    html_content = add_theme_switcher(html_content)
     if debug:
         html_content = inject_live_script(html_content)
 
@@ -72,30 +67,50 @@ def find_element(parent: Document | Element, tag_name: str, class_name: str | No
                 elements.append(node)
         else:
             elements.append(node)
-    require_condition(
-        len(elements) == 1,
-        f"Expected 1 element, found{len(elements)}",
-        raise_exc_class=RuntimeError
-    )
+    if len(elements) != 1:
+        raise RuntimeError(f"Expected 1 element, found{len(elements)}")
     return elements[0]
 
 
-def fill_html(html: str, color: ColorScheme) -> str:
+def fill_html(html: str) -> str:
     logger.debug("Filling out HTML")
-    html = f"""
-        <html>
-            <head>
-                <meta charset="utf-8" />
-                <title>Tucker Beck Resumé</title>
-                <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
-                <link rel="stylesheet" type="text/css" href="static/css/{color}.css" />
-            </head>
-            <body>
-                {html}
-            </body>
-        </html>
-    """
-    dom = parseString(html)
+
+    dom = Document()
+    html_node = dom.createElement("html")
+    dom.appendChild(html_node)
+
+    head = dom.createElement("head")
+    html_node.appendChild(head)
+
+    meta = dom.createElement("meta")
+    meta.setAttribute("charset", "utf-8")
+    head.appendChild(meta)
+
+    title = dom.createElement("title")
+    title.appendChild(dom.createTextNode("Tucker Beck Resumé"))
+    head.appendChild(title)
+
+    main_style = dom.createElement("link")
+    main_style.setAttribute("rel", "stylesheet")
+    main_style.setAttribute("type", "text/css")
+    main_style.setAttribute("href", "static/css/styles.css")
+    head.appendChild(main_style)
+
+    color_style = dom.createElement("link")
+    color_style.setAttribute("rel", "stylesheet")
+    color_style.setAttribute("type", "text/css")
+    color_style.setAttribute("href", f"static/css/{DEFAULT_COLOR}.css")
+    color_style.setAttribute("id", f"color-style")
+    head.appendChild(color_style)
+
+    body = dom.createElement("body")
+    html_node.appendChild(body)
+
+    markdown_fragment = parseString(f"<xxx>{html}</xxx>")
+    for child in markdown_fragment.documentElement.childNodes:
+        imported_node = dom.importNode(child, deep=True)
+        body.appendChild(imported_node)
+
     return _pretty_html(dom)
 
 
@@ -203,11 +218,9 @@ def add_download_button(html: str) -> str:
 
     sidebar_div = find_element(dom, "div", class_name="sidebar")
 
-    text = dom.createTextNode("Print (Download PDF)")
-
     span = dom.createElement("span")
     span.setAttribute("id", "button-span")
-    span.appendChild(text)
+    span.appendChild(dom.createTextNode("Print (Download PDF)"))
 
     button = dom.createElement("button")
     button.setAttribute("id", "download-button")
@@ -215,6 +228,44 @@ def add_download_button(html: str) -> str:
     button.setAttribute("class", "no-print")
     button.appendChild(span)
     sidebar_div.appendChild(button)
+
+    return _pretty_html(dom)
+
+
+def add_theme_switcher(html: str) -> str:
+    logger.debug("Adding theme switcher")
+
+    dom = parseString(html)
+
+    body = find_element(dom, "body")
+    switcher_div = dom.createElement("div")
+    switcher_div.setAttribute("id", "theme-switcher")
+    body.appendChild(switcher_div)
+
+    switcher_button = dom.createElement("button")
+    switcher_button.setAttribute("id", "theme-switcher-button")
+    switcher_button.setAttribute("class", "no-print")
+    switcher_button.appendChild(dom.createTextNode("🔅"))
+    switcher_div.appendChild(switcher_button)
+
+    switcher_list_div = dom.createElement("div")
+    switcher_list_div.setAttribute("id", "theme-switcher-list")
+    switcher_div.appendChild(switcher_list_div)
+    for color in ColorScheme:
+        color_button = dom.createElement("button")
+        color_button.setAttribute("class", f"theme-color-button no-print")
+        color_button.setAttribute("onclick", f"changeTheme('{color}')")
+        color_span = dom.createElement("span")
+        color_span.setAttribute("class", f"theme-sigil-{color}")
+        color_span.appendChild(dom.createTextNode(color))
+        color_button.appendChild(color_span)
+        switcher_list_div.appendChild(color_button)
+
+    script = dom.createElement("script")
+    script.setAttribute("src", "static/js/theme-switcher.js")
+    # This is so fucking stupid
+    script.appendChild(dom.createTextNode(""))
+    body.appendChild(script)
 
     return _pretty_html(dom)
 
