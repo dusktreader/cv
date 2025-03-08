@@ -1,20 +1,9 @@
 .ONESHELL:
-.DEFAULT_GOAL:=light
+.DEFAULT_GOAL:=build
 SHELL:=/bin/bash
 
-light:  ## Generate the light version of my cv
-	uv run cv resume
-
-blue:  ## Generate the light version of my cv
-	uv run cv resume --color=blue
-
-night:  ## Generate the night version of my cv
-	uv run cv resume --color=night
-
-bold:  ## Generate the bold version of my cv
-	uv run cv resume --color=bold
-
-all: light night bold blue  ## Generate all versions of my cv
+build:  ## Build the html page
+	uv run cv build
 
 watch:  ## Watch for file changes and automatically generate and reload the cv
 	@uv run cv watch

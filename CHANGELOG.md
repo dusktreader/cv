@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v5.2.0 - 2025-03-07
+* Added theme selector script and buttons
+* Stripped down watch script a bit
+* Removed some unneeded dependencies
+
 ## v5.1.0 - 2025-03-07
 * More work on the build and watch script
 * A little more styling

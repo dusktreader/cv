@@ -16,6 +16,7 @@ cli = typer.Typer()
 @cli.callback(invoke_without_command=True)
 def page(
     color: Annotated[ColorScheme, typer.Option(help="Render with color scheme.")] = ColorScheme.light,
+    auto_refresh: Annotated[bool, typer.Option(help="Force a refresh every 3 seconds.")] = False,
 ):
     html_path = get_html_path()
     static_path = Path("static")
@@ -30,4 +31,4 @@ def page(
     subprocess.run(["explorer.exe", str(html_path)])
 
     logger.debug(f"Watching for changes in {watch_paths}")
-    run_process(*watch_paths, target=build_page, args=(color,), kwargs=dict(debug=True))
+    run_process(*watch_paths, target=build_page, args=(color,), kwargs=dict(debug=auto_refresh))
