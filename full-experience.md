@@ -104,7 +104,7 @@
   began delivering invalid data, and used new capabilities to triage problems.
 
 
-### [Batelle Inc.](https://www.battelle.org): Applied Parallel Computing Scientist II
+### [Battelle Inc.](https://www.battelle.org): Applied Parallel Computing Scientist II
 
 #### May 2011 - November 2012: Modernize open-source biomolecular research application
 

@@ -84,7 +84,7 @@ teams where partnership, expertise, and tenacity are at the core of everything w
 - Mentored junior engineers, providing guidance on best practices and fostering a
   culture of continuous learning.
 
-### July 2008 - November 2012: [Batelle](https://www.battelle.org)
+### July 2008 - November 2012: [Battelle](https://www.battelle.org)
 #### Computer Scientist II
 
 - Modernized [APBS](https://github.com/Electrostatics/apbs) biomolecular research app by

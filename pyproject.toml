@@ -1,6 +1,6 @@
 [project]
 name = "cv"
-version = "5.2.0"
+version = "5.2.1"
 description = "Tools for building career documents."
 readme = "README.md"
 requires-python = ">=3.13"
