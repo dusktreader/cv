@@ -5,7 +5,7 @@ import typer
 from loguru import logger
 from markdown import markdown
 
-from app.constants import DEFAULT_COLOR, ColorScheme
+from app.constants import DEFAULT_COLOR, ColorScheme, DEFAULT_SIZE, Size
 
 
 cli = typer.Typer()
@@ -30,9 +30,11 @@ def build_page(debug: bool = False) -> Path:
     html_content = inject_photo(html_content)
     html_content = tag_emojis(html_content)
     html_content = add_download_button(html_content)
-    html_content = add_theme_switcher(html_content)
+    html_content = add_color_switcher(html_content)
+    html_content = add_size_switcher(html_content)
+    html_content = add_switcher_script(html_content)
     if debug:
-        html_content = inject_live_script(html_content)
+        html_content = inject_auto_refresh(html_content)
 
     html_path = get_html_path()
     logger.debug(f"Writing HTML file to {html_path}")
@@ -72,6 +74,26 @@ def find_element(parent: Document | Element, tag_name: str, class_name: str | No
     return elements[0]
 
 
+def find_id(root: Node | Document | Element, id_name: str) -> Node | None:
+    if isinstance(root, Element) and root.getAttribute("id") == id_name:
+        return root
+    for node in root.childNodes:
+        descendant = find_id(node, id_name)
+        if descendant is not None:
+            return descendant
+    return None
+
+
+def add_css_link(dom: Document, parent: Element, name: str, html_id: str | None = None) -> None:
+    css = dom.createElement("link")
+    css.setAttribute("rel", "stylesheet")
+    css.setAttribute("type", "text/css")
+    css.setAttribute("href", f"static/css/{name}.css")
+    if html_id:
+        css.setAttribute("id", html_id)
+    parent.appendChild(css)
+
+
 def fill_html(html: str) -> str:
     logger.debug("Filling out HTML")
 
@@ -90,18 +112,9 @@ def fill_html(html: str) -> str:
     title.appendChild(dom.createTextNode("Tucker Beck Resumé"))
     head.appendChild(title)
 
-    main_style = dom.createElement("link")
-    main_style.setAttribute("rel", "stylesheet")
-    main_style.setAttribute("type", "text/css")
-    main_style.setAttribute("href", "static/css/styles.css")
-    head.appendChild(main_style)
-
-    color_style = dom.createElement("link")
-    color_style.setAttribute("rel", "stylesheet")
-    color_style.setAttribute("type", "text/css")
-    color_style.setAttribute("href", f"static/css/{DEFAULT_COLOR}.css")
-    color_style.setAttribute("id", f"color-style")
-    head.appendChild(color_style)
+    add_css_link(dom, head, "styles")
+    add_css_link(dom, head, DEFAULT_SIZE, "size-style")
+    add_css_link(dom, head, DEFAULT_COLOR, "color-style")
 
     body = dom.createElement("body")
     html_node.appendChild(body)
@@ -185,6 +198,18 @@ def inject_divs(html: str) -> str:
     bottom_div.insertBefore(main_div, sidebar_div.nextSibling)
     _move_nodes_in_place(main_start, None, main_div)
 
+    switcher_div = dom.createElement("div")
+    switcher_div.setAttribute("id", "switchers")
+    body.appendChild(switcher_div)
+
+    switcher_menus = dom.createElement("div")
+    switcher_menus.setAttribute("id", "switcher-menus")
+    switcher_div.appendChild(switcher_menus)
+
+    switcher_list = dom.createElement("div")
+    switcher_list.setAttribute("id", "switcher-list")
+    switcher_div.appendChild(switcher_list)
+
     return _pretty_html(dom)
 
 
@@ -216,61 +241,121 @@ def add_download_button(html: str) -> str:
 
     dom = parseString(html)
 
-    sidebar_div = find_element(dom, "div", class_name="sidebar")
+    switcher_menus = find_id(dom, "switcher-menus")
+    assert switcher_menus is not None
 
-    span = dom.createElement("span")
-    span.setAttribute("id", "button-span")
-    span.appendChild(dom.createTextNode("Print (Download PDF)"))
+    switcher_list = find_id(dom, "switcher-list")
+    assert switcher_list is not None
 
-    button = dom.createElement("button")
-    button.setAttribute("id", "download-button")
-    button.setAttribute("onClick", "window.print()")
-    button.setAttribute("class", "no-print")
-    button.appendChild(span)
-    sidebar_div.appendChild(button)
+    menu_button = dom.createElement("button")
+    menu_button.setAttribute("id", "download-menu")
+    menu_button.setAttribute("class", "switcher-menu no-print")
+    menu_button.appendChild(dom.createTextNode("🖨"))
+    switcher_menus.appendChild(menu_button)
+
+    button_container = dom.createElement("div")
+    button_container.setAttribute("class", "switcher-buttons")
+    button_container.setAttribute("id", "download-buttons")
+    switcher_list.appendChild(button_container)
+
+    download_button = dom.createElement("button")
+    download_button.setAttribute("class", f"switcher-button download-button no-print")
+    download_button.setAttribute("onclick", "window.print()")
+    download_span = dom.createElement("span")
+    download_span.appendChild(dom.createTextNode("Download/Print"))
+    download_button.appendChild(download_span)
+    button_container.appendChild(download_button)
 
     return _pretty_html(dom)
 
 
-def add_theme_switcher(html: str) -> str:
-    logger.debug("Adding theme switcher")
+def add_color_switcher(html: str) -> str:
+    logger.debug("Adding color switcher")
 
     dom = parseString(html)
 
-    body = find_element(dom, "body")
-    switcher_div = dom.createElement("div")
-    switcher_div.setAttribute("id", "theme-switcher")
-    body.appendChild(switcher_div)
+    switcher_menus = find_id(dom, "switcher-menus")
+    assert switcher_menus is not None
 
-    switcher_button = dom.createElement("button")
-    switcher_button.setAttribute("id", "theme-switcher-button")
-    switcher_button.setAttribute("class", "no-print")
-    switcher_button.appendChild(dom.createTextNode("🔅"))
-    switcher_div.appendChild(switcher_button)
+    switcher_list = find_id(dom, "switcher-list")
+    assert switcher_list is not None
 
-    switcher_list_div = dom.createElement("div")
-    switcher_list_div.setAttribute("id", "theme-switcher-list")
-    switcher_div.appendChild(switcher_list_div)
+    menu_button = dom.createElement("button")
+    menu_button.setAttribute("id", "color-menu")
+    menu_button.setAttribute("class", "switcher-menu no-print")
+    menu_button.appendChild(dom.createTextNode("🔅"))
+    switcher_menus.appendChild(menu_button)
+
+    button_container = dom.createElement("div")
+    button_container.setAttribute("class", "switcher-buttons")
+    button_container.setAttribute("id", "color-buttons")
+    switcher_list.appendChild(button_container)
+
     for color in ColorScheme:
         color_button = dom.createElement("button")
-        color_button.setAttribute("class", f"theme-color-button no-print")
-        color_button.setAttribute("onclick", f"changeTheme('{color}')")
+        color_button.setAttribute("class", f"switcher-button color-button no-print")
+        color_button.setAttribute("onclick", f"changeColor('{color}')")
         color_span = dom.createElement("span")
-        color_span.setAttribute("class", f"theme-sigil-{color}")
+        color_span.setAttribute("class", f"color-sigil-{color}")
         color_span.appendChild(dom.createTextNode(color))
         color_button.appendChild(color_span)
-        switcher_list_div.appendChild(color_button)
+        button_container.appendChild(color_button)
+
+    return _pretty_html(dom)
+
+
+def add_size_switcher(html: str) -> str:
+    logger.debug("Adding size switcher")
+
+    dom = parseString(html)
+
+    switcher_menus = find_id(dom, "switcher-menus")
+    assert switcher_menus is not None
+
+    switcher_list = find_id(dom, "switcher-list")
+    assert switcher_list is not None
+
+    menu_button = dom.createElement("button")
+    menu_button.setAttribute("id", "size-menu")
+    menu_button.setAttribute("class", "switcher-menu no-print")
+    menu_button.appendChild(dom.createTextNode("🔍"))
+    switcher_menus.appendChild(menu_button)
+
+    button_container = dom.createElement("div")
+    button_container.setAttribute("class", "switcher-buttons")
+    button_container.setAttribute("id", "size-buttons")
+    switcher_list.appendChild(button_container)
+
+    for size in Size:
+        size_button = dom.createElement("button")
+        size_button.setAttribute("class", f"size-button switcher-button no-print")
+        size_button.setAttribute("onclick", f"changeSize('{size}')")
+        size_span = dom.createElement("span")
+        size_span.setAttribute("class", f"size-sigil-{size}")
+        size_span.appendChild(dom.createTextNode(size))
+        size_button.appendChild(size_span)
+        button_container.appendChild(size_button)
+
+    return _pretty_html(dom)
+
+
+def add_switcher_script(html: str) -> str:
+    logger.debug("Adding switcher script")
+
+    dom = parseString(html)
+    body = find_element(dom, "body")
 
     script = dom.createElement("script")
-    script.setAttribute("src", "static/js/theme-switcher.js")
+    script.setAttribute("src", "static/js/switchers.js")
+
     # This is so fucking stupid
-    script.appendChild(dom.createTextNode(""))
+    script.appendChild(dom.createTextNode(" "))
     body.appendChild(script)
 
     return _pretty_html(dom)
 
 
-def inject_live_script(html: str) -> str:
+def inject_auto_refresh(html: str) -> str:
     logger.debug("Adding live reload script")
 
     dom = parseString(html)

@@ -1,0 +1,48 @@
+.header {
+  height: 9em;
+}
+
+.header-info h1 {
+  font-size: 1.75em;
+}
+
+.contact p {
+  font-size:  0.75em;
+}
+
+.contact a {
+  font-size:  0.75em;
+}
+
+.summary p {
+  font-size:  0.75em;
+}
+
+.sidebar {
+  padding-top: 3em;
+  width: 14.5em;
+}
+
+.sidebar h2 {
+  font-size: 1.25em;
+}
+
+.sidebar li {
+  font-size: 1.0em;
+}
+
+.main h2 {
+  font-size: 1.25em;
+}
+
+.main h3 {
+  font-size: 1.0em;
+}
+
+.main h4 {
+  font-size: 0.75em;
+}
+
+.main li {
+  font-size:  0.75em;
+}

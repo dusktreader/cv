@@ -9,3 +9,12 @@ class ColorScheme(AutoNameEnum):
 
 
 DEFAULT_COLOR = ColorScheme.light
+
+
+class Size(AutoNameEnum):
+    small = auto()
+    medium = auto()
+    large = auto()
+
+
+DEFAULT_SIZE = Size.medium
