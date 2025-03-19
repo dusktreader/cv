@@ -47,7 +47,8 @@
   --light-gray-6: #2B2827;
   --light-gray-7: #121110;
 
-  --header-title-color: var(--light-red-6);
+  --header-title-name-color: var(--light-red-6);
+  --header-title-position-color: var(--light-blue-6);
   --header-text-color: var(--light-blue-6);
   --header-link-color: var(--light-red-4);
   --header-background-color: var(--light-blue-1);

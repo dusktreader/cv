@@ -1,38 +1,40 @@
 # Tucker Beck
 
+## Staff Software Engineer
+
 * 📍 [Camas, WA](https://goo.gl/maps/zgVAgxrRwfM1EPpf9)
 * 📞 [+1-509-713-2325](tel:+15097132325)
 * 📧 [tucker.beck@gmail.com](tucker.beck@gmail.com)
 * 🛠 [dusktreader@github](https://github.com/dusktreader)
 
-I'm an Engineering Leader focused on assembling powerhouse dev teams that consistently
-deliver high-impact software solutions. I lead with a fusion of empathy and resolve;
-it's my mission to deeply understand my people, the problems we face, and pragmatic
-strategies built on our strengths. Building a culture of determined collaboration
-and fearless innovation is crucial for the journey ahead. I'm committed to building
-teams where partnership, expertise, and tenacity are at the core of everything we do.
-
+I'm a results-driven engineer that's spent the last 15 years delivering products in
+critical environments, including data-intensive backends, high risk med-tech, highly
+classified research, and complex HPC stacks. I tackle challenges with a blend of
+pragmatism and innovation informed by years of experience and driven by a tenacious
+spirit. I am a leader that's dedicated to fostering a culture of collaboration and
+continuous improvement. I thrive in environments where partnership, excellence, and
+accountability are at the core of everything we do.
 
 ## Skills
 
-* **Languages**:    Python, Go, TypeScript/JavaScript, Perl, Java, C, C++, Erlang
-* **Technologies**: FastAPI, Kubernetes, Slurm, Angular, Docker, SQLAlchemy, Spark,
+* **Languages:**    Python, Go, TypeScript/JavaScript, Perl, Java, C, C++, Erlang
+* **Technologies:** FastAPI, Kubernetes, Slurm, Angular, Docker, SQLAlchemy, Spark,
                     Postgres, OpenCV
-* **Platforms**:    ClickUp, JIRA, Lucid, Slack, Teams, Google Workspace
+* **Platforms:**    ClickUp, JIRA, Lucid, Slack, Teams, Google Workspace
 
 
 ## Certs
 
-* **[CKAD](https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/ffc1c3da-f2eb-4056-ad55-2030dde6eb86-tucker-beck-4c813b35-c62b-4ba4-aa4f-39e8bf55a42f-certificate.pdf)**: 2024
+* **[CKAD](https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/ffc1c3da-f2eb-4056-ad55-2030dde6eb86-tucker-beck-4c813b35-c62b-4ba4-aa4f-39e8bf55a42f-certificate.pdf):** 2024
 
 
 ## Projects
 
-* **[armasec](https://github.com/omnivector-solutions/armasec)**:  OIDC Security for FastAPI
-* **[flask-praetorian](https://github.com/dusktreader/flask-praetorian)**:  Strong, simple Flask security
-* **[py-buzz](https://github.com/dusktreader/py-buzz)**:  Exception toolkit for Python
-* **[smart-letters](https://github.com/dusktreader/smart-letters)**:  AI assisted cover letter composition
-* **[jobbergate](https://github.com/omnivector-solutions/jobbergate)**:  Slurm remote job control framework
+* **[armasec](https://github.com/omnivector-solutions/armasec):**  OIDC Security for FastAPI
+* **[flask-praetorian](https://github.com/dusktreader/flask-praetorian):**  Strong, simple Flask security
+* **[py-buzz](https://github.com/dusktreader/py-buzz):**  Exception toolkit for Python
+* **[smart-letters](https://github.com/dusktreader/smart-letters):**  AI assisted cover letter composition
+* **[jobbergate](https://github.com/omnivector-solutions/jobbergate):**  Slurm remote job control framework
 
 
 ## Experience

@@ -25,15 +25,6 @@ wheels = [
 ]
 
 [[package]]
-name = "auto-name-enum"
-version = "2.0.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/4d/2f/505ed1c1ab1dbb8c14501b297e1f830aa1c36ce66d2d5a47320b6e04ff95/auto-name-enum-2.0.0.tar.gz", hash = "sha256:aa38d9c2730b95b0bb700cd93fb5f65a2a982f6d79bbbcd0c64e5bcfe8f3d5b1", size = 3193 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/41/88/6a03f04851af6ada6e0a2169d78fc9e85cbd189e81f7e80523ccd2261bcb/auto_name_enum-2.0.0-py3-none-any.whl", hash = "sha256:fb9fe25985d7ef890e7b419d242b9ec145162ae1252121f8a5e3e8cca0e6d87a", size = 3425 },
-]
-
-[[package]]
 name = "click"
 version = "8.1.7"
 source = { registry = "https://pypi.org/simple" }
@@ -59,9 +50,9 @@ name = "cv"
 version = "5.3.0"
 source = { editable = "." }
 dependencies = [
-    { name = "auto-name-enum" },
     { name = "loguru" },
     { name = "markdown" },
+    { name = "py-buzz" },
     { name = "typer" },
     { name = "watchfiles" },
 ]
@@ -74,9 +65,9 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "auto-name-enum", specifier = ">=2.0.0" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "markdown", specifier = ">=3.7" },
+    { name = "py-buzz", specifier = ">=5.0.2" },
     { name = "typer", specifier = ">=0.13.0" },
     { name = "watchfiles", specifier = ">=1.0.4" },
 ]
@@ -263,6 +254,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/cd/05/0a34433a064256a578f1783a10da6df098ceaa4a57bbeaa96a6c0352786b/pure_eval-0.2.3.tar.gz", hash = "sha256:5f4e983f40564c576c7c8635ae88db5956bb2229d7e9237d03b3c0b0190eaf42", size = 19752 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/8e/37/efad0257dc6e593a18957422533ff0f87ede7c9c6ea010a2177d738fb82f/pure_eval-0.2.3-py3-none-any.whl", hash = "sha256:1db8e35b67b3d218d818ae653e27f06c3aa420901fa7b081ca98cbedc874e0d0", size = 11842 },
+]
+
+[[package]]
+name = "py-buzz"
+version = "5.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/41/78/920a12f440acb94bc908cf58c28a085d455178e1400ab91c3fb52982aa0f/py_buzz-5.0.2.tar.gz", hash = "sha256:1f6e0c4a19f02f6f3a20d1667319170a0ccc53c099538e31681563cca855db93", size = 7188 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/29/f8/1647e6eba748ae23fc3c9846a0918cd4394d55688ddea1fc72f165a42173/py_buzz-5.0.2-py3-none-any.whl", hash = "sha256:09961b02f182189105ee84f3a67ddb927c03c8af840b6f0c89e1a8458a5f33b0", size = 7668 },
 ]
 
 [[package]]

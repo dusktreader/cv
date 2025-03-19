@@ -48,7 +48,8 @@
   --bold-gray-6: #34343B;
   --bold-gray-7: #17171B;
 
-  --header-title-color: var(--bold-pink-6);
+  --header-title-name-color: var(--bold-pink-6);
+  --header-title-position-color: var(--bold-gray-5);
   --header-text-color: var(--bold-purple-6);
   --header-link-color: var(--bold-blue3-5);
   --header-background-color: var(--bold-purple-1);

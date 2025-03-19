@@ -55,7 +55,8 @@
   --night-gray-6: #38373D;
   --night-gray-7: #1A191D;
 
-  --header-title-color: var(--night-red-4);
+  --header-title-name-color: var(--night-red-4);
+  --header-title-position-color: var(--night-green-3);
   --header-text-color: var(--night-indigo-1);
   --header-link-color: var(--night-blue-3);
   --header-background-color: var(--night-blue-7);

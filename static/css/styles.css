@@ -52,7 +52,7 @@ body {
   background-color: var(--body-background-color);
 }
 
-.container {
+#container {
   margin: 0em;
   padding: 0em;
   height: 100%;
@@ -62,7 +62,7 @@ body {
   flex-direction: column;
 }
 
-.bottom {
+#bottom {
   margin-top: 0em;
   flex: 1;
   display: flex;
@@ -71,7 +71,7 @@ body {
 
 /* Header styles */
 
-.header {
+#header {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -79,11 +79,11 @@ body {
   border-bottom: 0.2em solid black;
 }
 
-.header-photo {
+#header-photo {
   display: flex;
 }
 
-.header-photo img {
+#header-photo img {
   display: flex;
   margin-top: 0.5em;
   margin-left: 1.2em;
@@ -95,7 +95,7 @@ body {
   filter: drop-shadow(0px 0px 0.5em black);
 }
 
-.header-info {
+#header-info {
   display: flex;
   flex-direction: column;
   padding-right: 0.5em;
@@ -103,25 +103,45 @@ body {
   padding-bottom: 0.5em;
 }
 
-.header-info h1 {
-  font-family: bold-font;
+#title {
   display: flex;
+  font-family: bold-font;
+  flex-direction: row;
+  align-items: flex-end;
   margin-top: 0.25em;
   margin-bottom: 0.1em;
   padding-top: 0.1em;
-  color: var(--header-title-color);
 }
 
-.contact_list {
-  list-style-type: none;
+#title-name {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  color: var(--header-title-name-color);
+}
+
+#title-position::before {
+  content:":: ";
+  padding-left: 0.25em;
+}
+
+#title-position {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  color: var(--header-title-position-color);
+}
+
+#contact-list {
   display: flex;
+  flex-direction: column;
   width: 100%;
   padding-top: 0em;
   margin-top: 0em;
   white-space: nowrap;
 }
 
-.contact_list ul {
+#contact-list ul {
   list-style-type: none;
   display: flex;
   width: 100%;
@@ -129,9 +149,14 @@ body {
   margin-bottom: 0.5em;
   padding-left: 0em;
   margin-left: 0em;
+  white-space: nowrap;
 }
 
-.contact_list li:not(:last-child){
+#contact-list li {
+  white-space: nowrap;
+}
+
+#contact-list li:not(:last-child){
   padding-right: 0.75em;
   margin-right: 0.75em;
   border-right: 1px solid;
@@ -159,21 +184,21 @@ body {
   color: var(--header-link-color);
 }
 
-.summary p {
+#summary p {
   display: flex;
   margin-top: 0.1em;
   font-family: italic-font;
   color: var(--header-text-color);
 }
 
-.header a {
+#header a {
   color: var(--header-link-color);
 }
 
 
 /* Sidebar styles */
 
-.sidebar {
+#sidebar {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -183,13 +208,13 @@ body {
 }
 
 
-.sidebar h2 {
+#sidebar h2 {
   margin-top: 0.5em;
   margin-bottom: 0.25em;
   color: var(--sidebar-heading-color);
 }
 
-.sidebar ul {
+#sidebar ul {
   list-style-type: none;
   padding-left: 0em;
   margin-left: 0em;
@@ -198,22 +223,22 @@ body {
   color: var(--sidebar-text-color);
 }
 
-.sidebar li+li {
+#sidebar li+li {
   margin-top: 0.75em;
 }
 
-.sidebar ul+h2 {
+#sidebar ul+h2 {
   margin-top: 2.0em;
 }
 
-.sidebar a {
+#sidebar a {
   color: var(--sidebar-link-color);
 }
 
 
 /* Main styles */
 
-.main {
+#main {
   flex: 1;
   height: 100%;
   padding-left: 0.5em;
@@ -221,26 +246,26 @@ body {
   background-color: var(--main-background-color);
 }
 
-.main h2 {
+#main h2 {
   margin-top: 0.5em;
   margin-bottom: 0.25em;
   color: var(--main-title-color);
 }
 
-.main h3 {
+#main h3 {
   margin-top: 0.0em;
   margin-bottom: 0.1em;
   color: var(--main-heading-color);
 }
 
-.main h4 {
+#main h4 {
   margin-top: 0.0em;
   margin-bottom: 0.5em;
   font-family: bold-font;
   color: var(--main-subheading-color);
 }
 
-.main ul {
+#main ul {
   margin-top: 0.0em;
   padding-left: 0.75em;
   list-style-type: "\2771\00a0";
@@ -248,11 +273,11 @@ body {
   color: var(--main-text-color);
 }
 
-.main ul+h2 {
+#main ul+h2 {
   margin-top: 1.0em;
 }
 
-.main a {
+#main a {
   color: var(--main-link-color);
 }
 
@@ -353,7 +378,7 @@ body {
   opacity: 1;
 }
 
-.download-button span:before {
+.render-button span:before {
   content: "💾 ";
 }
 
@@ -363,6 +388,10 @@ body {
 
 .color-button span:before {
   content: "📺 ";
+}
+
+.position-button span:before {
+  content: "💻 ";
 }
 
 .color-sigil-light {

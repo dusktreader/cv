@@ -1,9 +1,13 @@
-.header {
+#header {
   height: 20em;
 }
 
-.header-info h1 {
+#title-name {
   font-size: 2.75em;
+}
+
+#title-position {
+  font-size: 2.0em;
 }
 
 .contact p {
@@ -14,35 +18,35 @@
   font-size:  1.65em;
 }
 
-.summary p {
+#summary p {
   font-size:  1.65em;
 }
 
-.sidebar {
+#sidebar {
   padding-top: 7em;
   width: 30em;
 }
 
-.sidebar h2 {
+#sidebar h2 {
   font-size: 2.0em;
 }
 
-.sidebar li {
+#sidebar li {
   font-size: 1.5em;
 }
 
-.main h2 {
+#main h2 {
   font-size: 2.0em;
 }
 
-.main h3 {
+#main h3 {
   font-size: 1.3em;
 }
 
-.main h4 {
+#main h4 {
   font-size: 1.65em;
 }
 
-.main li {
+#main li {
   font-size: 1.65em;
 }

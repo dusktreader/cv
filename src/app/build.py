@@ -2,10 +2,17 @@ from pathlib import Path
 from xml.dom.minidom import Document, Element, parseString, Node
 
 import typer
+from buzz import require_condition, enforce_defined
 from loguru import logger
 from markdown import markdown
 
-from app.constants import DEFAULT_COLOR, ColorScheme, DEFAULT_SIZE, Size
+from app.constants import (
+    ColorScheme,
+    HtmlChoices,
+    Size,
+    Position,
+    RenderAction,
+)
 
 
 cli = typer.Typer()
@@ -29,9 +36,10 @@ def build_page(debug: bool = False) -> Path:
     html_content = inject_divs(html_content)
     html_content = inject_photo(html_content)
     html_content = tag_emojis(html_content)
-    html_content = add_download_button(html_content)
-    html_content = add_color_switcher(html_content)
-    html_content = add_size_switcher(html_content)
+    html_content = add_switcher(html_content, RenderAction)
+    html_content = add_switcher(html_content, Position)
+    html_content = add_switcher(html_content, ColorScheme)
+    html_content = add_switcher(html_content, Size)
     html_content = add_switcher_script(html_content)
     if debug:
         html_content = inject_auto_refresh(html_content)
@@ -43,52 +51,54 @@ def build_page(debug: bool = False) -> Path:
     return html_path
 
 
-def _move_nodes_in_place(
-    start_node: Node,
-    end_node: Node | None,
-    target_node: Node,
-) -> None:
-    nodes_to_move = []
-    current_node = start_node
-    while current_node and current_node != end_node:
-        nodes_to_move.append(current_node)
-        current_node = current_node.nextSibling
-    for node in nodes_to_move:
-        target_node.appendChild(node)
-
-
 def _pretty_html(dom: Document) -> str:
     return "\n".join([l for l in dom.toprettyxml(indent="  ").split("\n") if l.strip()])
 
 
-def find_element(parent: Document | Element, tag_name: str, class_name: str | None = None) -> Node:
-    elements = []
-    for node in parent.getElementsByTagName(tag_name):
-        if class_name:
-            if node.getAttribute("class") == class_name:
-                elements.append(node)
-        else:
-            elements.append(node)
-    if len(elements) != 1:
-        raise RuntimeError(f"Expected 1 element, found{len(elements)}")
+def find_element(parent: Document | Element, tag_name: str) -> Node:
+    elements = parent.getElementsByTagName(tag_name)
+    require_condition(
+        len(elements) == 1,
+        f"Expected 1 element, found{len(elements)}",
+        raise_exc_class=RuntimeError
+    )
     return elements[0]
 
 
-def find_id(root: Node | Document | Element, id_name: str) -> Node | None:
-    if isinstance(root, Element) and root.getAttribute("id") == id_name:
-        return root
-    for node in root.childNodes:
-        descendant = find_id(node, id_name)
-        if descendant is not None:
-            return descendant
-    return None
+def find_id(root: Node | Document | Element, id_name: str) -> Node:
+
+    def _fr(root: Node | Document | Element, id_name: str) -> Node | None:
+        if isinstance(root, Element) and root.getAttribute("id") == id_name:
+            return root
+        for node in root.childNodes:
+            descendant = _fr(node, id_name)
+            if descendant is not None:
+                return descendant
+        return None
+
+    return enforce_defined(
+        _fr(root, id_name),
+        "Couldn't find id",
+        raise_exc_class=RuntimeError,
+    )
 
 
-def add_css_link(dom: Document, parent: Element, name: str, html_id: str | None = None) -> None:
+def add_css_link(
+    dom: Document,
+    parent: Element,
+    name: str,
+    html_id: str | None = None,
+    subdir: str | None = None,
+) -> None:
+    css_path = Path("static/css")
+    if subdir:
+        css_path = css_path / subdir
+    css_path = css_path / f"{name}.css"
+
     css = dom.createElement("link")
     css.setAttribute("rel", "stylesheet")
     css.setAttribute("type", "text/css")
-    css.setAttribute("href", f"static/css/{name}.css")
+    css.setAttribute("href", str(css_path))
     if html_id:
         css.setAttribute("id", html_id)
     parent.appendChild(css)
@@ -113,8 +123,8 @@ def fill_html(html: str) -> str:
     head.appendChild(title)
 
     add_css_link(dom, head, "styles")
-    add_css_link(dom, head, DEFAULT_SIZE, "size-style")
-    add_css_link(dom, head, DEFAULT_COLOR, "color-style")
+    add_css_link(dom, head, Size.default(), "size-style", subdir="sizes")
+    add_css_link(dom, head, ColorScheme.default(), "color-style", subdir="colors")
 
     body = dom.createElement("body")
     html_node.appendChild(body)
@@ -127,25 +137,55 @@ def fill_html(html: str) -> str:
     return _pretty_html(dom)
 
 
+def _move_node(
+    target_node: Node,
+    to_parent: Node,
+) -> None:
+    from_parent = target_node.parentNode
+    from_parent.removeChild(target_node)
+    to_parent.appendChild(target_node)
+
+
+def _move_nodes_range(
+    start_node: Node,
+    end_node: Node | None,
+    to_parent: Node,
+) -> None:
+    current_node = start_node
+    while current_node and current_node != end_node:
+        next_node = current_node.nextSibling
+        _move_node(current_node, to_parent)
+        current_node = next_node
+
+
 def inject_photo(html: str) -> str:
     logger.debug("Injecting photo into HTML")
     dom = parseString(html)
-    header_div = find_element(dom, "div", class_name="header")
 
-    header_photo_div = dom.createElement("div")
-    header_photo_div.setAttribute("class", "header-photo")
-    header_div.insertBefore(header_photo_div, header_div.firstChild)
+    header_photo_div = find_id(dom, "header-photo")
+
     header_photo_img = dom.createElement("img")
     header_photo_img.setAttribute("src", "static/images/me.png")
     header_photo_img.setAttribute("alt", "Tucker Beck Photo")
     header_photo_div.appendChild(header_photo_img)
 
-    header_info_div = dom.createElement("div")
-    header_info_div.setAttribute("class", "header-info")
-    header_div.insertBefore(header_info_div, header_photo_div.nextSibling)
-    _move_nodes_in_place(header_info_div.nextSibling, header_div.childNodes[-1], header_info_div)
-
     return _pretty_html(dom)
+
+
+def _make_div(
+    dom: Document,
+    parent_node: Node | None = None,
+    element_id: str | None = None,
+    class_name: str | None = None,
+) -> Node:
+    div = dom.createElement("div")
+    if element_id:
+        div.setAttribute("id", element_id)
+    if class_name:
+        div.setAttribute("class", class_name)
+    if parent_node:
+        parent_node.appendChild(div)
+    return div
 
 
 def inject_divs(html: str) -> str:
@@ -154,50 +194,58 @@ def inject_divs(html: str) -> str:
 
     body = dom.getElementsByTagName("body")[0]
 
-    container_div = dom.createElement("div")
-    container_div.setAttribute("class", "container")
+    # Create container
+    container_div = _make_div(dom, element_id="container")
     body.insertBefore(container_div, body.firstChild)
-    anchor = container_div.nextSibling
-    assert anchor is not None
-    _move_nodes_in_place(anchor, None, container_div)
 
-    header_div = dom.createElement("div")
-    header_div.setAttribute("class", "header")
-    container_div.insertBefore(header_div, container_div.firstChild)
-    h2_elements = container_div.getElementsByTagName("h2")
-    sidebar_start = next(e for e in h2_elements if e.firstChild.data == "Skills")
-    _move_nodes_in_place(header_div.nextSibling, sidebar_start, header_div)
+    # Add principle divs
+    header_div = _make_div(dom, parent_node=container_div, element_id="header")
+    bottom_div = _make_div(dom, parent_node=container_div, element_id="bottom")
 
-    contact_list_div = dom.createElement("div")
-    contact_list_div.setAttribute("class", "contact_list")
-    title_element = header_div.getElementsByTagName("h1")[0]
-    header_div.insertBefore(contact_list_div, title_element.nextSibling)
-    contact_list_element = header_div.getElementsByTagName("ul")[0]
-    _move_nodes_in_place(contact_list_element, contact_list_element.nextSibling, contact_list_div)
+    # Add bottom divs
+    sidebar_div = _make_div(dom, parent_node=bottom_div, element_id="sidebar")
+    main_div = _make_div(dom, parent_node=bottom_div, element_id="main")
 
-    summary_div = dom.createElement("div")
-    summary_div.setAttribute("class", "summary")
-    summary_element = header_div.getElementsByTagName("p")[0]
-    header_div.insertBefore(summary_div, summary_element)
-    _move_nodes_in_place(summary_element, summary_element.nextSibling, summary_div)
+    # Add header sub-divs
+    header_photo_div = _make_div(dom, parent_node=header_div, element_id="header-photo")
+    header_info_div = _make_div(dom, parent_node=header_div, element_id="header-info")
 
-    bottom_div = dom.createElement("div")
-    bottom_div.setAttribute("class", "bottom")
-    container_div.insertBefore(bottom_div, header_div.nextSibling)
-    _move_nodes_in_place(bottom_div.nextSibling, None, bottom_div)
+    # Add header-info sub-divs
+    title_div = _make_div(dom, parent_node=header_info_div, element_id="title")
+    title_x_div = _make_div(dom, parent_node=title_div, element_id="title-x")
+    contact_list_div = _make_div(dom, parent_node=header_info_div, element_id="contact-list")
+    summary_div = _make_div(dom, parent_node=header_info_div, element_id="summary")
 
-    sidebar_div = dom.createElement("div")
-    sidebar_div.setAttribute("class", "sidebar")
-    bottom_div.insertBefore(sidebar_div, bottom_div.firstChild)
-    h2_elements = bottom_div.getElementsByTagName("h2")
+    # Identify title elements
+    name_element = body.getElementsByTagName("h1")[0]
+    name_element.setAttribute("id", "title-name")
+
+    h2_elements = body.getElementsByTagName("h2")
+
+    position_element = h2_elements[0]
+    position_element.setAttribute("id", "title-position")
+
+    # Identify contact element
+    contact_list_element = body.getElementsByTagName("ul")[0]
+    summary_element = body.getElementsByTagName("p")[0]
+
+    # Identify sidebar elements
+    sidebar_start = h2_elements[1]
     main_start = next(e for e in h2_elements if e.firstChild.data == "Experience")
-    _move_nodes_in_place(sidebar_div.nextSibling, main_start, sidebar_div)
 
-    main_div = dom.createElement("div")
-    main_div.setAttribute("class", "main")
-    bottom_div.insertBefore(main_div, sidebar_div.nextSibling)
-    _move_nodes_in_place(main_start, None, main_div)
+    # Move header title elements
+    _move_node(name_element, title_x_div)
+    _move_node(position_element, title_x_div)
+    _move_node(contact_list_element, contact_list_div)
+    _move_node(summary_element, summary_div)
 
+    # Move sidebar elements
+    _move_nodes_range(sidebar_start, main_start, sidebar_div)
+
+    # Move main elements
+    _move_nodes_range(main_start, None, main_div)
+
+    # Add switchers
     switcher_div = dom.createElement("div")
     switcher_div.setAttribute("id", "switchers")
     body.appendChild(switcher_div)
@@ -218,123 +266,60 @@ def tag_emojis(html: str) -> str:
 
     dom = parseString(html)
 
-    contact_list_div = find_element(dom, "div", class_name="contact_list")
+    contact_list_div = find_id(dom, "contact-list")
     li_elements = contact_list_div.getElementsByTagName("li")
     for li in li_elements:
-        text_node = li.firstChild
-        text_node.replaceWholeText(text_node.data.strip())
-        p = dom.createElement("p")
-        p.setAttribute("class", "emoji")
-        li.insertBefore(p, text_node)
-        _move_nodes_in_place(text_node, text_node.nextSibling, p)
-
         contact_div = dom.createElement("div")
         contact_div.setAttribute("class", "contact")
         li.insertBefore(contact_div, li.firstChild)
-        _move_nodes_in_place(contact_div.nextSibling, li.childNodes[-1], contact_div)
+
+        text_node = contact_div.nextSibling
+        text_node.replaceWholeText(text_node.data.strip())
+
+        p = dom.createElement("p")
+        p.setAttribute("class", "emoji")
+
+        a = text_node.nextSibling
+        a.setAttribute("class", "contact-link")
+
+        _move_node(text_node, p)
+        contact_div.appendChild(p)
+        _move_node(a, contact_div)
 
     return _pretty_html(dom)
 
 
-def add_download_button(html: str) -> str:
-    logger.debug("Adding download/print button")
+def add_switcher(html: str, options: type[HtmlChoices]) -> str:
+    label = options.label()
+    emoji = options.emoji()
+
+    logger.debug(f"Adding {label} switcher")
 
     dom = parseString(html)
 
     switcher_menus = find_id(dom, "switcher-menus")
-    assert switcher_menus is not None
-
     switcher_list = find_id(dom, "switcher-list")
-    assert switcher_list is not None
 
     menu_button = dom.createElement("button")
-    menu_button.setAttribute("id", "download-menu")
+    menu_button.setAttribute("id", f"{label}-menu")
     menu_button.setAttribute("class", "switcher-menu no-print")
-    menu_button.appendChild(dom.createTextNode("🖨"))
+    menu_button.appendChild(dom.createTextNode(emoji))
     switcher_menus.appendChild(menu_button)
 
     button_container = dom.createElement("div")
     button_container.setAttribute("class", "switcher-buttons")
-    button_container.setAttribute("id", "download-buttons")
+    button_container.setAttribute("id", f"{label}-buttons")
     switcher_list.appendChild(button_container)
 
-    download_button = dom.createElement("button")
-    download_button.setAttribute("class", f"switcher-button download-button no-print")
-    download_button.setAttribute("onclick", "window.print()")
-    download_span = dom.createElement("span")
-    download_span.appendChild(dom.createTextNode("Download/Print"))
-    download_button.appendChild(download_span)
-    button_container.appendChild(download_button)
-
-    return _pretty_html(dom)
-
-
-def add_color_switcher(html: str) -> str:
-    logger.debug("Adding color switcher")
-
-    dom = parseString(html)
-
-    switcher_menus = find_id(dom, "switcher-menus")
-    assert switcher_menus is not None
-
-    switcher_list = find_id(dom, "switcher-list")
-    assert switcher_list is not None
-
-    menu_button = dom.createElement("button")
-    menu_button.setAttribute("id", "color-menu")
-    menu_button.setAttribute("class", "switcher-menu no-print")
-    menu_button.appendChild(dom.createTextNode("🔅"))
-    switcher_menus.appendChild(menu_button)
-
-    button_container = dom.createElement("div")
-    button_container.setAttribute("class", "switcher-buttons")
-    button_container.setAttribute("id", "color-buttons")
-    switcher_list.appendChild(button_container)
-
-    for color in ColorScheme:
-        color_button = dom.createElement("button")
-        color_button.setAttribute("class", f"switcher-button color-button no-print")
-        color_button.setAttribute("onclick", f"changeColor('{color}')")
-        color_span = dom.createElement("span")
-        color_span.setAttribute("class", f"color-sigil-{color}")
-        color_span.appendChild(dom.createTextNode(color))
-        color_button.appendChild(color_span)
-        button_container.appendChild(color_button)
-
-    return _pretty_html(dom)
-
-
-def add_size_switcher(html: str) -> str:
-    logger.debug("Adding size switcher")
-
-    dom = parseString(html)
-
-    switcher_menus = find_id(dom, "switcher-menus")
-    assert switcher_menus is not None
-
-    switcher_list = find_id(dom, "switcher-list")
-    assert switcher_list is not None
-
-    menu_button = dom.createElement("button")
-    menu_button.setAttribute("id", "size-menu")
-    menu_button.setAttribute("class", "switcher-menu no-print")
-    menu_button.appendChild(dom.createTextNode("🔍"))
-    switcher_menus.appendChild(menu_button)
-
-    button_container = dom.createElement("div")
-    button_container.setAttribute("class", "switcher-buttons")
-    button_container.setAttribute("id", "size-buttons")
-    switcher_list.appendChild(button_container)
-
-    for size in Size:
-        size_button = dom.createElement("button")
-        size_button.setAttribute("class", f"size-button switcher-button no-print")
-        size_button.setAttribute("onclick", f"changeSize('{size}')")
-        size_span = dom.createElement("span")
-        size_span.setAttribute("class", f"size-sigil-{size}")
-        size_span.appendChild(dom.createTextNode(size))
-        size_button.appendChild(size_span)
-        button_container.appendChild(size_button)
+    for option in options:
+        option_button = dom.createElement("button")
+        option_button.setAttribute("class", f"switcher-button {label}-button no-print")
+        option_button.setAttribute("onclick", option.js())
+        option_span = dom.createElement("span")
+        option_span.setAttribute("class", f"{label}-sigil-{option}")
+        option_span.appendChild(dom.createTextNode(option))
+        option_button.appendChild(option_span)
+        button_container.appendChild(option_button)
 
     return _pretty_html(dom)
 
