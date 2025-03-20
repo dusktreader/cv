@@ -11,18 +11,21 @@ const titles = {
     }
 }
 
-window.onload = () => {
+const getSummary = () => {
   var sumElement = document.getElementById("summary")
   children = sumElement.children
+  var summary = "<i>Couldn't find default summary!<i>"
   Array.from(children).forEach((child) => {
     if (child.tagName === "P") {
       text = child.innerHTML
-      console.log("Setting default summary")
-      localStorage.setItem("defaultSummary", child.innerHTML)
+      console.log("Found and saved default summary")
+      summary = child.innerHTML
     }
   });
+  return summary
 }
 
+const defaultSummary = getSummary();
 const head = document.getElementsByTagName('head')[0];
 
 const replaceStyle = (name, label) => {
@@ -48,11 +51,7 @@ const changePosition = (key) => {
   var summaryText = titles[key].summary
   if (!summaryText) {
     console.log("Using default summary")
-    summaryText = localStorage.getItem("defaultSummary");
-  }
-  if (!summaryText) {
-    console.log("No default summary found")
-    summaryText = "<i>Couldn't load default summary from local storage. Please refresh page<i>"
+    summaryText = defaultSummary;
   }
   posElement.innerHTML = titles[key].position
   sumElement.innerHTML = `<p>${summaryText}</p>`

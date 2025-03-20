@@ -23,7 +23,7 @@ class HtmlChoices(StrEnum):
         pass
 
     def js(self) -> str:
-        return f"replaceStyle({self}, {self.label()})"
+        return f"replaceStyle('{self}', '{self.label()}')"
 
 
 class ColorScheme(HtmlChoices):
@@ -62,9 +62,6 @@ class Size(HtmlChoices):
     @classmethod
     def emoji(cls) -> str:
         return "🔍"
-
-    def js(self) -> str:
-        return f"replaceStyle({self}, {self.label()})"
 
 
 class Position(HtmlChoices):
