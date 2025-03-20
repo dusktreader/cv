@@ -36,7 +36,7 @@ def build_page(debug: bool = False) -> Path:
     html_content = inject_divs(html_content)
     html_content = inject_photo(html_content)
     html_content = tag_emojis(html_content)
-    html_content = add_switcher(html_content, RenderAction)
+    html_content = add_switcher(html_content, RenderAction, override_map={RenderAction.download: "Print/Download"})
     html_content = add_switcher(html_content, Position)
     html_content = add_switcher(html_content, ColorScheme)
     html_content = add_switcher(html_content, Size)
@@ -248,6 +248,7 @@ def inject_divs(html: str) -> str:
     # Add switchers
     switcher_div = dom.createElement("div")
     switcher_div.setAttribute("id", "switchers")
+    switcher_div.setAttribute("class", "no-print")
     body.appendChild(switcher_div)
 
     switcher_menus = dom.createElement("div")
@@ -289,9 +290,15 @@ def tag_emojis(html: str) -> str:
     return _pretty_html(dom)
 
 
-def add_switcher(html: str, options: type[HtmlChoices]) -> str:
+def add_switcher(
+    html: str,
+    options: type[HtmlChoices],
+    override_map: dict[HtmlChoices, str] | None = None,
+) -> str:
     label = options.label()
-    emoji = options.emoji()
+    emoji = options.class_emoji()
+    if override_map is None:
+        override_map = {}
 
     logger.debug(f"Adding {label} switcher")
 
@@ -302,7 +309,7 @@ def add_switcher(html: str, options: type[HtmlChoices]) -> str:
 
     menu_button = dom.createElement("button")
     menu_button.setAttribute("id", f"{label}-menu")
-    menu_button.setAttribute("class", "switcher-menu no-print")
+    menu_button.setAttribute("class", "switcher-menu")
     menu_button.appendChild(dom.createTextNode(emoji))
     switcher_menus.appendChild(menu_button)
 
@@ -313,13 +320,27 @@ def add_switcher(html: str, options: type[HtmlChoices]) -> str:
 
     for option in options:
         option_button = dom.createElement("button")
-        option_button.setAttribute("class", f"switcher-button {label}-button no-print")
+        option_button.setAttribute("class", f"switcher-button {label}-button")
         option_button.setAttribute("onclick", option.js())
-        option_span = dom.createElement("span")
-        option_span.setAttribute("class", f"{label}-sigil-{option}")
-        option_span.appendChild(dom.createTextNode(option))
-        option_button.appendChild(option_span)
         button_container.appendChild(option_button)
+
+        option_button_div = dom.createElement("div")
+        option_button_div.setAttribute("class", f"button-internals")
+        option_button.appendChild(option_button_div)
+
+        option_emoji = dom.createElement("span")
+        option_emoji.setAttribute("class", f"switcher-button-emoji")
+        option_emoji.setAttribute("id", f"{label}-{option}-switcher-button-emoji")
+        option_emoji.appendChild(dom.createTextNode(option.emoji()))
+        option_button_div.appendChild(option_emoji)
+
+        option_text = dom.createElement("span")
+        option_text.setAttribute("class", f"switcher-button-text")
+        option_text.setAttribute("id", f"{label}-{option}-switcher-button-text")
+        option_text.appendChild(dom.createTextNode(
+            override_map.get(option, option.capitalize())
+        ))
+        option_button_div.appendChild(option_text)
 
     return _pretty_html(dom)
 

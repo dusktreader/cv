@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v5.4.2 - 2025-03-14
+* Fixed centering on buttons
+* Fixed font on buttons
+
 ## v5.4.1 - 2025-03-14
 * Fixed style switching buttons
 

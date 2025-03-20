@@ -1,3 +1,4 @@
+from dataclasses import dataclass, field
 from typing import Self, cast
 from abc import abstractmethod
 from enum import StrEnum, auto
@@ -19,7 +20,11 @@ class HtmlChoices(StrEnum):
 
     @classmethod
     @abstractmethod
-    def emoji(cls) -> str:
+    def class_emoji(cls) -> str:
+        pass
+
+    @abstractmethod
+    def emoji(self) -> str:
         pass
 
     def js(self) -> str:
@@ -41,8 +46,11 @@ class ColorScheme(HtmlChoices):
         return "color"
 
     @classmethod
-    def emoji(cls) -> str:
+    def class_emoji(cls) -> str:
         return "🔅"
+
+    def emoji(self) -> str:
+        return "📺";
 
 
 
@@ -60,8 +68,11 @@ class Size(HtmlChoices):
         return "size"
 
     @classmethod
-    def emoji(cls) -> str:
+    def class_emoji(cls) -> str:
         return "🔍"
+
+    def emoji(self) -> str:
+        return "🔎"
 
 
 class Position(HtmlChoices):
@@ -78,8 +89,11 @@ class Position(HtmlChoices):
         return "position"
 
     @classmethod
-    def emoji(cls) -> str:
+    def class_emoji(cls) -> str:
         return "🖥"
+
+    def emoji(self) -> str:
+        return "💻"
 
     def js(self) -> str:
         return f"changePosition('{self}')"
@@ -87,18 +101,20 @@ class Position(HtmlChoices):
 
 class RenderAction(HtmlChoices):
     download = auto()
-    printer = auto()
 
     @classmethod
     def default(cls) -> Self:
-        return cast(Self, cls.printer)
+        return cast(Self, cls.download)
 
     @classmethod
     def label(cls) -> str:
         return "render"
 
     @classmethod
-    def emoji(cls) -> str:
+    def class_emoji(cls) -> str:
+        return "💾"
+
+    def emoji(self) -> str:
         return "🖨"
 
     def js(self) -> str:

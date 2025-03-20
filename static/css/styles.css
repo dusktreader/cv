@@ -343,14 +343,8 @@ body {
   margin-bottom: 0.5em;
   padding: 0.5em 1em;
   font-size: 1.2em;
-  transition: all 0.5s;
   cursor: pointer;
   border-radius: 0.25em;
-  font-family: emoji-font;
-}
-
-.switcher-button:hover {
-  background-color: var(--button-hover-color);
 }
 
 .switcher-button:active {
@@ -358,56 +352,54 @@ body {
   filter: drop-shadow(0 0 0.05em black);
 }
 
-.switcher-button span {
-  transition: 0.5s;
-  margin: 0;
-  padding: 0;
-  padding-right: 1em;
+:root {
+  --emoji-size: 1.2em;
 }
 
-.switcher-button span:before {
+.button-internals {
+  transition: all 0.5s ease-in-out;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switcher-button-text {
+  transition: all 0.5s ease-in-out;
+  padding-right: calc(var(--emoji-size) * 1.5);
+}
+
+.switcher-button:hover .switcher-button-text {
+  padding-right: calc(var(--emoji-size) * 0.75);
+}
+
+.switcher-button-emoji {
+  transition: all 0.5s ease-in-out;
   opacity: 0;
+  padding-right: calc(var(--emoji-size) * 0.5);
+  font-family: emoji-font;
 }
 
-.switcher-button:hover span {
-  padding-left: 1em;
-  padding-right: 0em;
-}
-
-.switcher-button:hover span:before {
+.switcher-button:hover .switcher-button-emoji {
+  display: flex;
   opacity: 1;
+  padding-left: calc(var(--emoji-size) * 0.75);
 }
 
-.render-button span:before {
-  content: "💾 ";
-}
-
-.size-button span:before {
-  content: "🔎 ";
-}
-
-.color-button span:before {
-  content: "📺 ";
-}
-
-.position-button span:before {
-  content: "💻 ";
-}
-
-.color-sigil-light {
+#color-light-switcher-button-emoji {
   color: #DFDCDB;
 }
 
-.color-sigil-night {
+#color-night-switcher-button-emoji {
   color: #68BA8D;
 }
 
-.color-sigil-blue {
+#color-blue-switcher-button-emoji {
   color: #6D8CD9;
 
 }
 
-.color-sigil-bold {
+#color-bold-switcher-button-emoji {
   color: #716FC9;
 }
 
