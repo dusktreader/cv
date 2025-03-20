@@ -75,10 +75,12 @@ accountability are at the core of everything we do.
 ### November 2012 - March 2019: [Comscore](https://www.comscore.com)
 #### Senior Software Engineer
 
-- Architected mission critical internal system for [record linkage](https://en.m.wikipedia.org/wiki/Record_linkage) to enable data aggregation across disparate subsystems of Comscore.
+- Architected mission critical internal system for
+  [record linkage](https://en.m.wikipedia.org/wiki/Record_linkage) to enable data
+  aggregation across disparate subsystems of Comscore.
 - Developed flexible graph-like data schema in [Postgres](https://www.postgresql.org) to
   support heterogeneous data models in a single, large metadata store.
-- Architected ETL pipeline to consume and normalize multi-format data from a wide range
+- Implemented ETL pipeline to consume and normalize multi-format data from a wide range
   of sources including S3, FTP, and external databases.
 - Designed scalable recommendation engine using Spark to deliver aggregated link
   recommendations utilizing multiple, independent matching algorithms.
@@ -90,7 +92,7 @@ accountability are at the core of everything we do.
 
 - Modernized [APBS](https://github.com/Electrostatics/apbs) biomolecular research app by
   translating legacy FORTRAN code to ANSI C and migrating version control to Git.
-- Collaborated on human tracking in high-bandwisth video streams, transitioning research code
+- Collaborated on human tracking in high-bandwidth video streams, transitioning research code
   from MatLab to C++ and designing a distributed computing platform.
 - Researched and developed object detection and classification methods in gigapixel
   images, utilizing various machine learning techniques.
