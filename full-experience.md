@@ -64,7 +64,7 @@
   modern best practices and reactive user experience
 * Introduced [ngrx](https://ngrx.io/) store for system-wide application state management
   and reactive asynchronous communication with backend subsystems.
-* Re-designed PA Messaging section from scratch to behave like familar email applications
+* Re-designed PA Messaging section from scratch to behave like familiar email applications
   including contacts, attachments, and intuitive conversation-based message presentation.
 * Promoted version control workflow standardization and collaborated with other senior
   developers to codify standards and best practices for git.
