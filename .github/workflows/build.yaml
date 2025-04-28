@@ -21,13 +21,13 @@ jobs:
     - name: Install python
       run:  uv python install 3.13
 
-    - name: Build Page
-      run:  make
+    - name: Build JSON file for page
+      run:  make build/json
 
     - name: Stage assets
       run:  |
         mkdir _site
-        mv index.html _site
+        mv cv.html _site/index.html
         cp -r static _site/
 
     - name: Upload Site Artifacts

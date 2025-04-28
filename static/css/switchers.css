@@ -1,0 +1,118 @@
+:root {
+  --emoji-size: 1.2em;
+}
+
+#switchers {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 1em;
+  right: 1em;
+  align-items: end;
+}
+
+#switcher-menus {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+#switcher-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5em;
+}
+
+.switcher-buttons {
+  display: none;
+  flex-direction: column;
+  margin-top: 0.5em;
+}
+
+.switcher-menu {
+  color: var(--button-text-color);
+  background-color: var(--button-color);
+  border: none;
+  filter: drop-shadow(0 0 0.25em black);
+  padding: 0em;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5em;
+  font-size: 1.2em;
+  transition: all 0.5s;
+  cursor: pointer;
+  font-family: emoji-font;
+  width: 2em;
+  height: 2em;
+  border-radius: 1em;
+}
+
+.switcher-menu:hover {
+  background-color: var(--button-hover-color);
+}
+
+.switcher-button {
+  flex-direction: row;
+  color: var(--button-text-color);
+  background-color: var(--button-color);
+  border: none;
+  filter: drop-shadow(0 0 0.25em black);
+  margin-top: none;
+  margin-bottom: 0.5em;
+  padding: 0.5em 1em;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 0.25em;
+}
+
+.switcher-button:active {
+  background-color: var(--button-clicked-color);
+  filter: drop-shadow(0 0 0.05em black);
+}
+
+.button-internals {
+  transition: all 0.5s ease-in-out;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switcher-button-text {
+  transition: all 0.5s ease-in-out;
+  padding-right: calc(var(--emoji-size) * 1.5);
+}
+
+.switcher-button:hover .switcher-button-text {
+  padding-right: calc(var(--emoji-size) * 0.75);
+}
+
+.switcher-button-emoji {
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  padding-right: calc(var(--emoji-size) * 0.5);
+  font-family: emoji-font;
+}
+
+.switcher-button:hover .switcher-button-emoji {
+  display: flex;
+  opacity: 1;
+  padding-left: calc(var(--emoji-size) * 0.75);
+}
+
+#color-light-switcher-button-emoji {
+  color: #DFDCDB;
+}
+
+#color-night-switcher-button-emoji {
+  color: #68BA8D;
+}
+
+#color-blue-switcher-button-emoji {
+  color: #6D8CD9;
+
+}
+
+#color-bold-switcher-button-emoji {
+  color: #716FC9;
+}

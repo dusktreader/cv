@@ -1,0 +1,220 @@
+#container {
+  padding: 2em;
+}
+
+h2 {
+  border-bottom: 0.1em solid black;
+}
+
+/* Header styles */
+
+#header {
+  display: flex;
+  flex-direction: column;
+}
+
+#header-title {
+  display: flex;
+  font-family: bold-font;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#header-title-name {
+  padding-right: 0.25em;
+}
+
+#header-title-role {
+  padding-left: 0.25em;
+}
+
+#header-contact-list {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  margin-top: .25em;
+  white-space: nowrap;
+}
+
+.header-contact {
+  display: flex;
+  padding-right: 0.75em;
+  margin-right: 0.75em;
+  justify-content: center;
+}
+
+.header-contact:not(:last-child){
+  border-right: 1px solid;
+}
+
+.header-contact-emoji {
+  display: flex;
+  padding-right: 0.15em;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  font-family: emoji-font;
+}
+
+.header-contact-link {
+  color: var(--plain-link-color);
+}
+
+#header-summary {
+  display: flex;
+  margin-top: 0.75em;
+}
+
+
+/* Skills styles */
+
+#skills {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.skills-item {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+  padding: 0em;
+}
+
+.skills-label {
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+
+/* Certificates styles */
+
+#certs {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.certs-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+  font-weight: bold;
+}
+
+
+/* Experience styles */
+
+#exp {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-item {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+.exp-item-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.exp-item-title-left {
+  display: flex;
+}
+
+.exp-item-company {
+  padding-right: 0.5em;
+}
+
+.exp-item-details {
+  margin-top: 0.5em;
+}
+
+.exp-item-details-list {
+  padding-left: 0.75em;
+  list-style-type: "\2771\00a0";
+  list-style-position: outside;
+}
+
+
+/* Projects styles */
+
+#projects {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-item {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+.projects-item-title {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+}
+
+.projects-item-link {
+  display: flex;
+  margin-right: 0.5em;
+}
+
+.projects-item-details {
+  margin-top: 0.5em;
+}
+
+.projects-item-details-list {
+  padding-left: 0.75em;
+  list-style-type: "\2771\00a0";
+  list-style-position: outside;
+}
+
+
+/* Education styles */
+
+#education {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.education-title {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  justify-content: space-between;
+  margin-top: 0.5em;
+}
+
+.education-title-left {
+  display: flex;
+}
+
+.education-title-school {
+  padding-right: 0.5em;
+}
+
+.education-details {
+  margin-top: 0.5em;
+}
+
+.education-details-list {
+  padding-left: 0.75em;
+  list-style-type: "\2771\00a0";
+  list-style-position: outside;
+}

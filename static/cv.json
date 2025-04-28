@@ -1,0 +1,262 @@
+{
+  "main": {
+    "name": "Tucker Beck",
+    "role": "Staff Software Engineer",
+    "contacts": [
+      {
+        "text": "Camas, WA",
+        "link": "https://goo.gl/maps/zgVAgxrRwfM1EPpf9",
+        "emoji": "📍"
+      },
+      {
+        "text": "+1-509-713-2325",
+        "link": "tel:+15097132325",
+        "emoji": "📞"
+      },
+      {
+        "text": "tucker.beck@gmail.com",
+        "link": "mailto:tucker.beck@gmail.com",
+        "emoji": "📧"
+      },
+      {
+        "text": "dusktreader@github",
+        "link": "https://github.com/dusktreader",
+        "emoji": "🛠"
+      }
+    ],
+    "summary": "I'm a results-driven engineer that's spent the last 15 years delivering products in\ncritical environments, including data-intensive backends, high risk med-tech, highly\nclassified research, and complex HPC stacks. I tackle challenges with a blend of\npragmatism and innovation informed by years of experience and driven by a tenacious\nspirit. I am a leader that's dedicated to fostering a culture of collaboration and\ncontinuous improvement. I thrive in environments where partnership, excellence, and\naccountability are at the core of everything we do.\n",
+    "skills": {
+      "languages": [
+        "Python",
+        "Go",
+        "TypeScript",
+        "Perl",
+        "C",
+        "C++",
+        "Java"
+      ],
+      "technologies": [
+        "FastAPI",
+        "Kubernetes",
+        "Slurm",
+        "Angular",
+        "Docker",
+        "SQLAlchemy",
+        "Kafka",
+        "NATS",
+        "Flask",
+        "Spark",
+        "Postgres",
+        "MPI",
+        "OpenCV"
+      ],
+      "platforms": [
+        "GitHub",
+        "AWS",
+        "Sentry",
+        "ClickUp",
+        "JIRA",
+        "Lucid",
+        "Slack",
+        "Teams",
+        "Google Workspace"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "Certified Kubernetes Application Developer",
+        "abrv": "CKAD",
+        "link": "https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/ffc1c3da-f2eb-4056-ad55-2030dde6eb86-tucker-beck-4c813b35-c62b-4ba4-aa4f-39e8bf55a42f-certificate.pdf",
+        "date": "November 2024"
+      }
+    ],
+    "projects": [
+      {
+        "name": "armasec",
+        "summary": "OIDC Security for FastAPI",
+        "link": "https://github.com/omnivector-solutions/armasec",
+        "details": [
+          "Adds RBAC auth for endpoints using dependency injection with minimal configuration",
+          "Supports Auth0 and Keycloak out of the box, but compatible with any OIDC provider"
+        ]
+      },
+      {
+        "name": "jobbergate",
+        "summary": "Slurm remote job control framework",
+        "link": "https://github.com/omnivector-solutions/jobbergate",
+        "details": [
+          "Advanced job templating and submission system that integrates seamlessly with Slurm",
+          "Provides remote access to on-premisis compute clusters with SSO security provided by Armasec"
+        ]
+      },
+      {
+        "name": "flask-praetorian",
+        "summary": "Strong, simple Flask security",
+        "link": "https://github.com/dusktreader/flask-praetorian",
+        "details": [
+          "Adds JWT based security using basic auth to Flask projects with minimal configuration",
+          "Supports password validation, email verification, and custom claims ou tof the box"
+        ]
+      },
+      {
+        "name": "xerox-python",
+        "summary": "Spin up a project on GitHub in about a minute",
+        "link": "https://github.com/dusktreader/xerox-python",
+        "details": [
+          "Complete Python project templates that deploy to GitHub complete with tests, docs, and CI",
+          "Includes templates for general, Flask, and FastAPI projects"
+        ]
+      },
+      {
+        "name": "smart-letters",
+        "summary": "AI assisted cover letter composition",
+        "link": "https://github.com/dusktreader/smart-letters",
+        "details": [
+          "Produce a customized cover letter for specific job postings based on your resumé",
+          "Configure easily, refine with re-prompting and in-process edits, and produce a styled PDF in one command"
+        ]
+      }
+    ],
+    "experiences": [
+      {
+        "company": "Omnivector Solutions",
+        "link": "https://omnivector.ai/",
+        "role": "Engineering Manager",
+        "dates": {
+          "start": "July 2021",
+          "end": "February 2025"
+        },
+        "details": [
+          "Improved efficiency by developing and documenting comprehensive engineering processes and successfully migrating project management to ClickUp.",
+          "Increased team accountability and streamlined development workflows by establishing SCRUM-based methodology and measuring efficiency improvements.",
+          "Directed the development of the Vantage HPC SAAS platform from ideation through public release.",
+          "Established standards and practices for development teams including git branching model, code quality baselines, and documentation requirements.",
+          "Fostered a culture of continuous improvement by conducting regular one-on-one meetings and performance reviews to monitor and optimize team dynamics.",
+          "Built Armasec OSS Auth package to enable security for Python APIs backed by OIDC providers including Auth0 and Keycloak."
+        ],
+        "links": [
+          {
+            "pattern": "ClickUp",
+            "href": "https://clickup.com/"
+          },
+          {
+            "pattern": "SCRUM",
+            "href": "https://scrum.org/"
+          },
+          {
+            "pattern": "Vantage",
+            "href": "https://vantagecompute.ai/"
+          },
+          {
+            "pattern": "Armasec",
+            "href": "https://github.com/omnivector-solutions/armasec"
+          }
+        ]
+      },
+      {
+        "company": "Office Ally",
+        "link": "https://cms.officeally.com/",
+        "role": "Web Development Team Lead",
+        "dates": {
+          "start": "March 2019",
+          "end": "February 2020"
+        },
+        "details": [
+          "Piloted the integration of lab reports and processing statuses from a genomic testing venture project into Patient Ally.",
+          "Developed an event-driven architecture using Kafka to manage the flow of genomics data throughout cross-platform ecosystem.",
+          "Revised Sprint Retrospective meetings to focus team engagement, reflect on improvements, and promote positive feedback.",
+          "Successfully transitioned to Team Lead during high turnover improving individual performance and redirecting team on new product roadmap.",
+          "Re-designed patient portal messaging section from scratch into a familiar email-like subsystem including contacts, attachments, and conversation oriented interface.",
+          "Led the effort to rewrite legacy front-end from Django to Angular, introducing modern best practices and reactive user experience; mentored junior developers on the team."
+        ],
+        "links": [
+          {
+            "pattern": "Patient Ally",
+            "href": "https://www.patientally.com/"
+          },
+          {
+            "pattern": "Kafka",
+            "href": "https://kafka.apache.org/"
+          }
+        ]
+      },
+      {
+        "company": "Comscore",
+        "link": "https://www.comscore.com/",
+        "role": "Senior Software Engineer",
+        "dates": {
+          "start": "November 2012",
+          "end": "March 2019"
+        },
+        "details": [
+          "Architected mission critical internal system for record linkage to enable data aggregation across disparate subsystems of Comscore.",
+          "Developed flexible graph-like data schema in Postgres to support heterogeneous data models in a single, large metadata store.",
+          "Implemented ETL pipeline to consume and normalize multi-format data from a wide range of sources including S3, FTP, and external databases.",
+          "Designed scalable recommendation engine using Spark to deliver aggregated link recommendations utilizing multiple, independent matching algorithms.",
+          "Mentored junior engineers, providing guidance on best practices and fostering a culture of continuous learning."
+        ],
+        "links": [
+          {
+            "pattern": "record linkage",
+            "href": "https://en.m.wikipedia.org/wiki/Record_linkage"
+          },
+          {
+            "pattern": "ETL",
+            "href": "https://aws.amazon.com/what-is/etl/"
+          }
+        ]
+      },
+      {
+        "company": "Battelle",
+        "link": "https://www.battelle.org/",
+        "role": "Computer Scientist II",
+        "dates": {
+          "start": "July 2008",
+          "end": "November 2012"
+        },
+        "details": [
+          "Modernized APBS biomolecular research app by translating legacy FORTRAN code to ANSI C and migrating version control to Git.",
+          "Collaborated on human tracking in high-bandwidth video streams, transitioning research code from MatLab to C++ and designing a distributed computing platform.",
+          "Researched and developed object detection and classification methods in gigapixel images, utilizing various machine learning techniques.",
+          "Developed a novel hybridization of a Self-Organizing Map with an Artificial Neural Network to classify images by structural signature of sub-features."
+        ],
+        "links": [
+          {
+            "pattern": "APBS",
+            "href": "https://github.com/Electrostatics/apbs"
+          },
+          {
+            "pattern": "novel hybridization",
+            "href": "https://github.com/dusktreader/somtk"
+          },
+          {
+            "pattern": "Self-Organizing Map",
+            "href": "https://en.wikipedia.org/wiki/Self-organizing_map"
+          }
+        ]
+      }
+    ],
+    "education": {
+      "school": "Washington State University",
+      "link": "https://wsu.edu/",
+      "degree": "Computer Science B.S.",
+      "dates": {
+        "start": "September 2004",
+        "end": "May 2008"
+      },
+      "details": [
+        "Graduated Cum Laude",
+        "Focused on Scientific Computing, Machine Learning, and Parallel Computing"
+      ]
+    }
+  },
+  "profiles": {
+    "manager": {
+      "role": "Engineering Manager",
+      "summary": "I'm an Engineering Leader focused on assembling powerhouse dev teams that consistently deliver high-impact\nsoftware solutions. I lead with a fusion of empathy and resolve; it's my mission to deeply understand my people,\nthe problems we face, and pragmatic strategies built on our strengths. Building a culture of determined\ncollaboration and fearless innovation is crucial for the journey ahead. I'm committed to building teams where\npartnership, expertise, and tenacity are at the core of everything we do.\n"
+    },
+    "senior": {
+      "role": "Senior Software Engineer"
+    }
+  }
+}
