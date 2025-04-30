@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v6.0.0 - 2025-04-30
+* Completely rewrote building mechanism using JS rather than Python
+* Added plain style resume
+
 ## v5.4.4 - 2025-03-20
 * Fixed some typos
 

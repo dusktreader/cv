@@ -1,9 +1,10 @@
+from typing import Annotated
+
 import typer
 
-from app.version import show_version
-from app.logging import init_logs
-from app.build import cli as build_cli
-from app.watch import cli as watch_cli
+from cv.version import show_version
+from cv.build import cli as build_cli
+from cv.watch import cli as watch_cli
 
 
 cli = typer.Typer(rich_markup_mode="rich")
@@ -12,8 +13,7 @@ cli = typer.Typer(rich_markup_mode="rich")
 @cli.callback(invoke_without_command=True)
 def main(
     ctx: typer.Context,
-    verbose: bool = typer.Option(False, help="Enable verbose logging to the terminal"),
-    version: bool = typer.Option(False, help="Print the version of and exit"),
+    version: Annotated[bool, typer.Option(help="Print the version of and exit")] = False,
 ):
     if version:
         show_version()
@@ -22,8 +22,6 @@ def main(
     if ctx.invoked_subcommand is None:
         typer.echo(ctx.get_help())
         ctx.exit()
-
-    init_logs(verbose=verbose)
 
 
 cli.add_typer(build_cli, name="build")

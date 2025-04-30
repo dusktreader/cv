@@ -1,15 +1,16 @@
 [project]
 name = "cv"
-version = "5.4.4"
-description = "Tools for building career documents."
+version = "6.0.0"
+description = "Build my resume page"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "loguru>=0.7.3",
+    "livereload>=2.7.1",
     "markdown>=3.7",
     "py-buzz>=5.0.2",
+    "pydantic>=2.11.3",
+    "pyyaml>=6.0.2",
     "typer>=0.13.0",
-    "watchfiles>=1.0.4",
 ]
 
 [tool.uv]
@@ -23,4 +24,13 @@ dev = [
 ]
 
 [project.scripts]
-cv = "app.main:cli"
+cv = "cv.main:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "src/cv",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
