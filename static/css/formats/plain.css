@@ -218,3 +218,19 @@ h2 {
   list-style-type: "\2771\00a0";
   list-style-position: outside;
 }
+
+:root {
+  --button-color: white;
+  --button-hover-color: silver;
+  --button-clicked-color: gray;
+  --button-text-color: black;
+}
+
+/* Print Controls */
+
+@media print {
+  @page {
+    padding: 2em;
+
+  }
+}

@@ -3,15 +3,38 @@ import { makeElement } from "./tools.js";
 
 const head = document.getElementsByTagName('head')[0];
 
-const showDiv = (id) => {
+const hideButtons = () => {
   Array.from(document.getElementsByClassName("switcher-buttons")).map(e => {
-    e.style.removeProperty('display');
+    e.style.display = "none";
   });
+};
 
+
+const showButtons = (id) => {
+  hideButtons()
   if (id !== undefined) {
     document.getElementById(id).style.display = "flex";
   }
 };
+
+
+// Main menu
+
+const mainMenu = document.getElementById('main-menu');
+const subMenu = document.getElementById("sub-menu")
+mainMenu.addEventListener('mouseover', () => {
+  mainMenu.style.display = "none";
+  subMenu.style.display = "flex";
+});
+
+const switcherDiv = document.getElementById('switchers');
+switcherDiv.addEventListener('mouseout', (event) => {
+  if (!switcherDiv.contains(event.relatedTarget)) {
+    hideButtons()
+    mainMenu.style.display = "flex";
+    subMenu.style.display = "none";
+  }
+});
 
 
 // Role Controls
@@ -25,7 +48,7 @@ export const changeRole = (key) => {
 }
 
 const roleMenu = document.getElementById('role-menu').addEventListener('mouseover', () => {
-  showDiv("role-buttons");
+  showButtons("role-buttons");
 });
 
 
@@ -47,7 +70,7 @@ export const changeColor = (key) => {
 }
 
 const colorMenu = document.getElementById('color-menu').addEventListener('mouseover', () => {
-  showDiv("color-buttons");
+  showButtons("color-buttons");
 });
 
 
@@ -69,7 +92,7 @@ export const changeSize = (key) => {
 }
 
 const sizeMenu = document.getElementById('size-menu').addEventListener('mouseover', () => {
-  showDiv("size-buttons");
+  showButtons("size-buttons");
 });
 
 
@@ -84,7 +107,7 @@ export const render = (format) => {
 }
 
 const renderMenu = document.getElementById('render-menu').addEventListener('mouseover', () => {
-  showDiv("render-buttons")
+  showButtons("render-buttons")
 });
 
 
@@ -95,15 +118,5 @@ Array.from(document.getElementsByClassName("format-button")).map( e => {
 });
 
 const formatMenu = document.getElementById('format-menu').addEventListener('mouseover', () => {
-  showDiv("format-buttons")
-});
-
-
-
-
-const switcherDiv = document.getElementById('switchers');
-switchers.addEventListener('mouseout', (event) => {
-  if (!switcherDiv.contains(event.relatedTarget)) {
-    showDiv()
-  }
+  showButtons("format-buttons")
 });

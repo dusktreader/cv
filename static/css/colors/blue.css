@@ -65,10 +65,10 @@
   --main-link-color: var(--light-red-4);
   --main-background-color: var(--light-gray-1);
 
-  --button-color: var(--light-red-6);
-  --button-hover-color: var(--light-red-5);
-  --button-clicked-color: var(--light-green-3);
-  --button-text-color: var(--light-gray-2);
+  --button-color: var(--light-gray-1);
+  --button-hover-color: var(--light-gray-2);
+  --button-clicked-color: var(--light-blue-1);
+  --button-text-color: var(--light-red-6);
 
   --body-foreground-color: none;
   --body-background-color: none;

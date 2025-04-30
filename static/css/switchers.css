@@ -11,6 +11,10 @@
   align-items: end;
 }
 
+#sub-menu {
+  display: none;
+}
+
 #switcher-menus {
   display: flex;
   flex-direction: row;
@@ -114,5 +118,5 @@
 }
 
 #color-bold-switcher-button-emoji {
-  color: #716FC9;
+  color: #B72FB1;
 }

@@ -258,3 +258,15 @@
 #main a {
   color: var(--main-link-color);
 }
+
+
+/* Print Controls */
+
+@media print {
+  @page {
+    padding: 2em;
+  }
+  #container {
+    border: 0.1em solid black;
+  }
+}

@@ -57,18 +57,12 @@ body {
 
 /* Print Controls */
 
-@page {
-  margin: 1em;
-}
-
 @media print {
   .no-print, .no-print * {
     display: none !important;
   }
 
-  #container {
-    width: 100%;
-    height: 100%;
-    border: 0.1em solid black;
+  @page {
+    margin: 0;
   }
 }
