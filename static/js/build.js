@@ -1,40 +1,37 @@
 import { build as buildPlain } from "./build-plain.js";
 import { build as buildFancy } from "./build-fancy.js";
-import { deepUpdate } from "./tools.js";
+import { deepUpdate, makeElement } from "./tools.js";
 
 export var currentFormat = "fancy";
-export var currentProfile = "staff";
 
 export const loadConfig = (args = {}) => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
   fetch("static/cv.json")
     .then(r => r.json())
     .then(data => {
       var cv = data.main;
 
-      if (args.profile !== undefined && args.profile !== currentProfile) {
-        deepUpdate(cv, data.profiles[args.profile]);
-        currentProfile = args.profile;
+      const role = urlParams.get("role") || "staff";
+      if (role !== "staff") {
+        deepUpdate(cv, data.profiles[role]);
       }
 
-      var format = currentFormat
-      if (args.format !== undefined) {
-        format = args.format;
+      const color = urlParams.get("color") || "light";
+      const format = urlParams.get("format") || "fancy";
+      const size = urlParams.get("size") || "medium";
+
+      switch (format) {
+        case "plain":
+          buildPlain(cv);
+          break;
+        case "fancy":
+          buildFancy(cv, color, size);
+          break;
       }
-      buildPage(cv, format);
     })
     .catch(e => {
       console.error("Error fetching json: ", e);
     });
-}
-
-const buildPage = (data, format) => {
-  switch (format) {
-    case "plain":
-      buildPlain(data);
-      break;
-    case "fancy":
-      buildFancy(data);
-      break;
-  }
-  currentFormat = format;
 }

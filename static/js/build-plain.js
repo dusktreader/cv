@@ -1,17 +1,7 @@
-import { cap } from "./tools.js";
+import { cap, maybeUpdateCss } from "./tools.js";
 
 export const build = (data) => {
-  const formatCssUrl = "static/css/formats/plain.css";
-  const oldFormatCss = document.getElementById("format-css");
-  if (oldFormatCss.href !== formatCssUrl) {
-    const newFormatCss = document.createElement("link");
-    newFormatCss.setAttribute("id", "format-css");
-    newFormatCss.setAttribute("rel", "stylesheet");
-    newFormatCss.setAttribute("type", "text/css");
-    newFormatCss.setAttribute("href", formatCssUrl);
-
-    oldFormatCss.replaceWith(newFormatCss);
-  }
+  maybeUpdateCss("format-style", "formats", "plain");
 
   const sizeStyle = document.getElementById("size-style")
   if (sizeStyle !== null) {

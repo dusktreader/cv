@@ -1,5 +1,5 @@
 import { loadConfig } from "./build.js";
-import { makeElement } from "./tools.js";
+import { makeElement, setUrlParams } from "./tools.js";
 
 const head = document.getElementsByTagName('head')[0];
 
@@ -40,12 +40,8 @@ switcherDiv.addEventListener('mouseout', (event) => {
 // Role Controls
 
 Array.from(document.getElementsByClassName("role-button")).map( e => {
-  e.addEventListener("click", () => changeRole(e.role));
+  e.addEventListener("click", () => setUrlParams({ role: e.getAttribute("role") }));
 });
-
-export const changeRole = (key) => {
-  loadConfig({ profile: key });
-}
 
 const roleMenu = document.getElementById('role-menu').addEventListener('mouseover', () => {
   showButtons("role-buttons");
@@ -55,19 +51,8 @@ const roleMenu = document.getElementById('role-menu').addEventListener('mouseove
 // Color Controls
 
 Array.from(document.getElementsByClassName("color-button")).map( e => {
-  e.addEventListener("click", () => changeColor(e.getAttribute("color")));
+  e.addEventListener("click", () => setUrlParams({ color: e.getAttribute("color") }));
 });
-
-export const changeColor = (key) => {
-  const path = `static/css/colors/${key}.css`;
-  const oldCss = document.getElementById("color-style");
-  if (oldCss.getAttribute("href") !== path) {
-    oldCss.replaceWith(makeElement(
-      "link",
-      { id: "color-style", rel: "stylesheet", type: "text/css", href: path }
-    ));
-  }
-}
 
 const colorMenu = document.getElementById('color-menu').addEventListener('mouseover', () => {
   showButtons("color-buttons");
@@ -77,19 +62,8 @@ const colorMenu = document.getElementById('color-menu').addEventListener('mouseo
 // Size Controls
 
 Array.from(document.getElementsByClassName("size-button")).map( e => {
-  e.addEventListener("click", () => changeSize(e.getAttribute("size")));
+  e.addEventListener("click", () => setUrlParams({ size: e.getAttribute("size") }));
 });
-
-export const changeSize = (key) => {
-  const path = `static/css/sizes/${key}.css`;
-  const oldCss = document.getElementById("size-style");
-  if (oldCss.getAttribute("href") !== path) {
-    oldCss.replaceWith(makeElement(
-      "link",
-      { id: "size-style", rel: "stylesheet", type: "text/css", href: path }
-    ));
-  }
-}
 
 const sizeMenu = document.getElementById('size-menu').addEventListener('mouseover', () => {
   showButtons("size-buttons");
@@ -99,12 +73,8 @@ const sizeMenu = document.getElementById('size-menu').addEventListener('mouseove
 // Render Controls
 
 Array.from(document.getElementsByClassName("render-button")).map( e => {
-  e.addEventListener("click", () => render(e.format));
+  e.addEventListener("click", () => window.print());
 });
-
-export const render = (format) => {
-  window.print();
-}
 
 const renderMenu = document.getElementById('render-menu').addEventListener('mouseover', () => {
   showButtons("render-buttons")
@@ -114,7 +84,7 @@ const renderMenu = document.getElementById('render-menu').addEventListener('mous
 // Format Controls
 
 Array.from(document.getElementsByClassName("format-button")).map( e => {
-  e.addEventListener("click", () => loadConfig({ format: e.getAttribute("format") }));
+  e.addEventListener("click", () => setUrlParams({ format: e.getAttribute("format"), clear: true }));
 });
 
 const formatMenu = document.getElementById('format-menu').addEventListener('mouseover', () => {

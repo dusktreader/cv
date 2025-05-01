@@ -1,27 +1,9 @@
-import { cap, withDiv, makeElement, addKids } from "./tools.js";
+import { cap, withDiv, makeElement, addKids, maybeUpdateCss } from "./tools.js";
 
-export const build = data => {
-  const formatCssUrl = "static/css/formats/fancy.css";
-  const oldFormatCss = document.getElementById("format-css");
-  if (oldFormatCss.href !== formatCssUrl) {
-    const newFormatCss = makeElement(
-      "link",
-      {id: "format-css", rel: "stylesheet", type: "text/css", href: formatCssUrl}
-    )
-    oldFormatCss.replaceWith(newFormatCss);
-  }
-
-  const head = document.getElementsByTagName("head")[0];
-  if (document.getElementById("size-style") === null) {
-    head.appendChild(
-      makeElement("link", { id: "size-style", rel: "stylesheet", type: "text/css", href: "static/css/sizes/medium.css" }),
-    );
-  }
-  if (document.getElementById("color-style") === null) {
-    head.appendChild(
-      makeElement("link", { id: "color-style", rel: "stylesheet", type: "text/css", href: "static/css/colors/light.css" }),
-    );
-  }
+export const build = (data, color, size) => {
+  maybeUpdateCss("format-style", "formats", "fancy");
+  maybeUpdateCss("size-style", "sizes", size);
+  maybeUpdateCss("color-style", "colors", color);
 
   document.getElementById("size-menu").style.display = "flex";
   document.getElementById("color-menu").style.display = "flex";
@@ -68,7 +50,7 @@ const buildHeaderTitle = data => {
 const buildHeaderContacts = data => {
   return withDiv({ id: "header-contact-list" }, div => addKids(
     div,
-    ...data.contacts.map( (contact) => withDiv({ klass: "header-contact-item" }, (cDiv) => addKids(
+    ...data.contacts.map(contact => withDiv({ klass: "header-contact-item" }, (cDiv) => addKids(
       cDiv,
       makeElement("p", {klass: "header-contact-emoji", html: contact.emoji}),
       makeElement("a", {klass: "header-contact-link", html: contact.text, href: contact.link, target: "_blank"}),
