@@ -120,7 +120,7 @@ main:
       role: Web Development Team Lead
       dates:
         start: "March 2019"
-        end: "February 2020"
+        end: "July 2021"
       details:
         - Piloted the integration of lab reports and processing statuses from a genomic testing venture project into Patient Ally.
         - Developed an event-driven architecture using Kafka to manage the flow of genomics data throughout cross-platform ecosystem.

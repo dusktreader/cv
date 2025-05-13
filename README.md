@@ -45,7 +45,7 @@ accountability are at the core of everything we do.
 - Built [Armasec](https://github.com/omnivector-solutions/armasec) OSS Auth package to enable security for Python APIs backed by OIDC providers including Auth0 and Keycloak.
 
 
-### March 2019 - February 2020: [Office Ally](https://cms.officeally.com/)
+### March 2019 - July 2021: [Office Ally](https://cms.officeally.com/)
 #### Web Development Team Lead
 
 - Piloted the integration of lab reports and processing statuses from a genomic testing venture project into [Patient Ally](https://www.patientally.com/).
